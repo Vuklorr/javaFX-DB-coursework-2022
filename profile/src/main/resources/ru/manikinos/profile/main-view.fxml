@@ -5,9 +5,11 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="418.0" prefWidth="720.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.manikinos.profile.MainController">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="456.0" prefWidth="761.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.manikinos.profile.MainController">
   <tabs>
     <Tab text="Запросы">
       <content>
@@ -63,16 +65,23 @@
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <TableView fx:id="typeTable" layoutX="13.0" layoutY="14.0" prefHeight="275.0" prefWidth="207.0">
+                  <TableView fx:id="typeTable" layoutX="13.0" layoutY="14.0" prefHeight="389.0" prefWidth="359.0">
                      <columns>
-                        <TableColumn  prefWidth="75.0" text="id" fx:id="idTypeColumn" />
-                        <TableColumn prefWidth="131.0" text="Название" fx:id="nameTypeColumn" />
+                        <TableColumn fx:id="idTypeColumn" prefWidth="55.0" text="id" />
+                        <TableColumn fx:id="nameTypeColumn" prefWidth="306.0" text="Название" />
                      </columns>
                   </TableView>
-                  <Button fx:id="typeDeleteButton" layoutX="13.0" layoutY="301.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="88.0" text="Удалить" />
-                  <Button fx:id="typeAddButton" layoutX="112.0" layoutY="301.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="109.0" text="Добавить" />
-                  <Button fx:id="typeCancelButton" layoutX="14.0" layoutY="343.0" mnemonicParsing="false" text="Отменить" />
-                  <Button fx:id="typeAcceptButton" layoutX="112.0" layoutY="343.0" mnemonicParsing="false" text="Подтвердить" />
+                  <AnchorPane layoutX="393.0" layoutY="14.0" prefHeight="209.0" prefWidth="357.0">
+                     <children>
+                        <Text layoutX="16.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID" />
+                        <Text layoutX="14.0" layoutY="93.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Название" />
+                        <TextField fx:id="idTypeTextField" layoutX="110.0" layoutY="17.0" prefHeight="24.0" prefWidth="233.0" promptText="Введите id" />
+                        <TextField fx:id="nameTypeTextField" layoutX="111.0" layoutY="77.0" prefHeight="24.0" prefWidth="232.0" promptText="Введите название" />
+                        <Button fx:id="addTypeButton" layoutX="236.0" layoutY="170.0" mnemonicParsing="false" onAction="#addType" prefHeight="24.0" prefWidth="109.0" text="Добавить" />
+                        <Button fx:id="deleteTypeButton" layoutX="8.0" layoutY="170.0" mnemonicParsing="false" onAction="#deleteType" prefHeight="24.0" prefWidth="96.0" text="Удалить" />
+                        <Button fx:id="updateTypeButton" layoutX="116.0" layoutY="170.0" mnemonicParsing="false" onAction="#updateType" prefHeight="24.0" prefWidth="108.0" text="Изменить" />
+                     </children>
+                  </AnchorPane>
                </children>
             </AnchorPane>
         </content>

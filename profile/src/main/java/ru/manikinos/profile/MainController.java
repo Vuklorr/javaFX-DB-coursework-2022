@@ -2,13 +2,21 @@ package ru.manikinos.profile;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import ru.manikinos.profile.dao.AddDAO;
+import ru.manikinos.profile.dao.AllDataDAO;
+import ru.manikinos.profile.dao.DeleteDAO;
+import ru.manikinos.profile.dao.UpdateDAO;
 import ru.manikinos.profile.entity.*;
+import ru.manikinos.profile.util.InitData;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
 
 public class MainController {
@@ -173,16 +181,13 @@ public class MainController {
     private TableColumn<Relative, String> surnameRelativeColumn;
 
     @FXML
-    private Button typeAcceptButton;
+    private Button updateTypeButton;
 
     @FXML
-    private Button typeAddButton;
+    private Button addTypeButton;
 
     @FXML
-    private Button typeCancelButton;
-
-    @FXML
-    private Button typeDeleteButton;
+    private Button deleteTypeButton;
 
     @FXML
     private TableView<Type> typeTable;
@@ -201,22 +206,39 @@ public class MainController {
 
     @FXML
     private TableView<WorkActivity> waTable;
-    private final ObservableList<Type> typeData = FXCollections.observableArrayList();
 
     @FXML
-    private void initialize() {
-        initDataType();
+    private TextField idTypeTextField;
 
-        idTypeColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
-        nameTypeColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-
-        typeTable.setItems(typeData);
+    @FXML
+    private TextField nameTypeTextField;
+    private final AllDataDAO allDataDAO = new AllDataDAO();
+    private final AddDAO addDAO = new AddDAO();
+    private final UpdateDAO updateDAO = new UpdateDAO();
+    private final DeleteDAO deleteDAO = new DeleteDAO();
+    public MainController() throws SQLException, ClassNotFoundException {
     }
 
-    private void initDataType() {
-        typeData.add(new Type(1, "qq"));
-        typeData.add(new Type(2, "ww"));
-        typeData.add(new Type(3, "ew"));
+    @FXML
+    private void initialize() throws SQLException, ClassNotFoundException {
+        InitData.initType(idTypeColumn, nameTypeColumn, typeTable, allDataDAO); //TODO init all table
+    }
+    @FXML
+    private void addType(ActionEvent event) {
+        addDAO.addType(idTypeTextField.getText(), nameTypeTextField.getText());
+        InitData.initType(idTypeColumn, nameTypeColumn, typeTable, allDataDAO);
+    }
+
+    @FXML
+    private void deleteType(ActionEvent event) {
+        deleteDAO.deleteType(idTypeTextField.getText());
+        InitData.initType(idTypeColumn, nameTypeColumn, typeTable, allDataDAO);
+    }
+
+    @FXML
+    private void updateType(ActionEvent event) {
+        updateDAO.updateType(idTypeTextField.getText(), nameTypeTextField.getText());
+        InitData.initType(idTypeColumn, nameTypeColumn, typeTable, allDataDAO);
     }
 
 }
