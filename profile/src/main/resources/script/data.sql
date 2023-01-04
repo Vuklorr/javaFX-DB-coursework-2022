@@ -38,7 +38,7 @@ INSERT INTO Personal_data (id_address, id_relative, id_work, name, patronymic, s
                                                                                                              (6,6,6, 'Светлана', 'Валерьевна','Земляникина', '+7(787)878-78-78'),
                                                                                                              (7,7,7, 'Юлия', 'Сергеевна','Снегирева', '+7(989)898-98-98');
 
-INSERT INTO Document (id_type, id_personal_data, start_date, ens_date) VALUES (7,1,'2023-02-02', '2024-02-10'),
+INSERT INTO Document (id_type, id_personal_data, start_date, end_date) VALUES (7,1,'2023-02-02', '2024-02-10'),
                                                                               (7,2,'2023-02-02', '2024-02-10'),
                                                                               (7,3,'2021-10-10', '2022-10-15'),
                                                                               (1,4,'2016-11-11', '2030-08-10'),

@@ -16,7 +16,7 @@ create table PUBLIC.DOCUMENT
     ID_TYPE INTEGER,
     ID_PERSONAL_DATA INTEGER,
     START_DATE DATE,
-    ENS_DATE DATE,
+    END_DATE DATE,
     primary key (ID)
 );
 
