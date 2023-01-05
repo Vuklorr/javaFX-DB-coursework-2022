@@ -1,20 +1,17 @@
 package ru.manikinos.profile;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
 import ru.manikinos.profile.dao.AddDAO;
-import ru.manikinos.profile.dao.AllDataDAO;
 import ru.manikinos.profile.dao.DeleteDAO;
 import ru.manikinos.profile.dao.UpdateDAO;
+import ru.manikinos.profile.datainit.SelectionMode;
 import ru.manikinos.profile.entity.*;
-import ru.manikinos.profile.util.InitData;
+import ru.manikinos.profile.datainit.InitData;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -25,16 +22,26 @@ public class MainController {
     private TableView<PersonalData> PDTable;
 
     @FXML
-    private Button addressAcceptButton;
+    private Button updateAddressButton;
 
     @FXML
-    private Button addressAddButton;
-
+    private Button addAddressButton;
     @FXML
-    private Button addressCancelButton;
-
+    private Button deleteAddressButton;
     @FXML
-    private Button addressDeleteButton;
+    private TextField idAddressTextField;
+    @FXML
+    private TextField countryAddressTextField;
+    @FXML
+    private TextField cityAddressTextField;
+    @FXML
+    private TextField regionAddressTextField;
+    @FXML
+    private TextField streetAddressTextField;
+    @FXML
+    private TextField houseAddressTextField;
+    @FXML
+    private TextField flatAddressTextField;
 
     @FXML
     private TableView<Address> addressTable;
@@ -212,7 +219,8 @@ public class MainController {
 
     @FXML
     private TextField nameTypeTextField;
-    private final AllDataDAO allDataDAO = new AllDataDAO();
+    private final InitData initData = new InitData();
+    private final SelectionMode selectionMode = new SelectionMode();
     private final AddDAO addDAO = new AddDAO();
     private final UpdateDAO updateDAO = new UpdateDAO();
     private final DeleteDAO deleteDAO = new DeleteDAO();
@@ -220,25 +228,98 @@ public class MainController {
     }
 
     @FXML
-    private void initialize() throws SQLException, ClassNotFoundException {
-        InitData.initType(idTypeColumn, nameTypeColumn, typeTable, allDataDAO); //TODO init all table
+    private void initialize() {
+        initData.initAddress(idAddressColumn,
+                countryAddressColumn,
+                cityAddressColumn,
+                regionAddressColumn,
+                streetAddressColumn,
+                houseAddressColumn,
+                flatAddressColumn,
+                addressTable);
+        selectionMode.addressSelected(idAddressTextField,
+                countryAddressTextField,
+                cityAddressTextField,
+                regionAddressTextField,
+                streetAddressTextField,
+                houseAddressTextField,
+                flatAddressTextField,
+                addressTable);
+
+        initData.initType(idTypeColumn, nameTypeColumn, typeTable);
+        selectionMode.typeSelected(idTypeTextField, nameTypeTextField, typeTable);
+
+        //TODO init all table
     }
+
+    @FXML
+    private void addAddress(ActionEvent event) {
+        addDAO.addAddress(idAddressTextField.getText(),
+                countryAddressTextField.getText(),
+                cityAddressTextField.getText(),
+                regionAddressTextField.getText(),
+                streetAddressTextField.getText(),
+                houseAddressTextField.getText(),
+                flatAddressTextField.getText());
+
+        initData.initAddress(idAddressColumn,
+                countryAddressColumn,
+                cityAddressColumn,
+                regionAddressColumn,
+                streetAddressColumn,
+                houseAddressColumn,
+                flatAddressColumn,
+                addressTable);
+    }
+
+    @FXML
+    private void deleteAddress(ActionEvent event) {
+        deleteDAO.deleteAddress(idAddressTextField.getText());
+        initData.initAddress(idAddressColumn,
+                countryAddressColumn,
+                cityAddressColumn,
+                regionAddressColumn,
+                streetAddressColumn,
+                houseAddressColumn,
+                flatAddressColumn,
+                addressTable);
+    }
+
+    @FXML
+    private void updateAddress(ActionEvent event) {
+        updateDAO.updateAddress(idAddressTextField.getText(),
+                countryAddressTextField.getText(),
+                cityAddressTextField.getText(),
+                regionAddressTextField.getText(),
+                streetAddressTextField.getText(),
+                houseAddressTextField.getText(),
+                flatAddressTextField.getText());
+        initData.initAddress(idAddressColumn,
+                countryAddressColumn,
+                cityAddressColumn,
+                regionAddressColumn,
+                streetAddressColumn,
+                houseAddressColumn,
+                flatAddressColumn,
+                addressTable);
+    }
+
     @FXML
     private void addType(ActionEvent event) {
         addDAO.addType(idTypeTextField.getText(), nameTypeTextField.getText());
-        InitData.initType(idTypeColumn, nameTypeColumn, typeTable, allDataDAO);
+        initData.initType(idTypeColumn, nameTypeColumn, typeTable);
     }
 
     @FXML
     private void deleteType(ActionEvent event) {
         deleteDAO.deleteType(idTypeTextField.getText());
-        InitData.initType(idTypeColumn, nameTypeColumn, typeTable, allDataDAO);
+        initData.initType(idTypeColumn, nameTypeColumn, typeTable);
     }
 
     @FXML
     private void updateType(ActionEvent event) {
         updateDAO.updateType(idTypeTextField.getText(), nameTypeTextField.getText());
-        InitData.initType(idTypeColumn, nameTypeColumn, typeTable, allDataDAO);
+        initData.initType(idTypeColumn, nameTypeColumn, typeTable);
     }
 
 }

@@ -12,11 +12,19 @@ public class DeleteDAO {
     public DeleteDAO() throws SQLException, ClassNotFoundException {
     }
 
+    public void deleteAddress(String id) {
+        final String DELETE_ADDRESS_QUERY = "DELETE FROM Address WHERE id = ?;";
+        delete(DELETE_ADDRESS_QUERY, Integer.parseInt(id));
+    }
+
     public void deleteType(String id) {
         final String DELETE_TYPE_QUERY = "DELETE FROM Type WHERE id = ?;";
+        delete(DELETE_TYPE_QUERY, Integer.parseInt(id));
 
-        try(PreparedStatement preparedStatement = connection.prepareStatement(DELETE_TYPE_QUERY)) {
-            preparedStatement.setInt(1, Integer.parseInt(id));
+    }
+    private void delete(final String QUERY, final int id) {
+        try(PreparedStatement preparedStatement = connection.prepareStatement(QUERY)) {
+            preparedStatement.setInt(1, id);
 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {

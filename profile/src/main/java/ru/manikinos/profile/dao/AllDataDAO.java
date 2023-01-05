@@ -14,12 +14,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AllDataDAO {
-    private Connection connection = Connections.getConnection();
+    private final Connection connection = Connections.getConnection();
 
     public AllDataDAO() throws SQLException, ClassNotFoundException {
     }
 
-    public ObservableList<Address> getAddressData() throws SQLException, ClassNotFoundException {
+    public ObservableList<Address> getAddressData()  {
         ObservableList<Address> addresses = FXCollections.observableArrayList();
         final String GET_ADDRESSES_QUERY = "SELECT*\n" +
                 "FROM Address;";
@@ -40,6 +40,10 @@ public class AllDataDAO {
 
                 addresses.add(new Address(id, country, city, region, street, house, flat));
             }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
         }
         return addresses;
     }
