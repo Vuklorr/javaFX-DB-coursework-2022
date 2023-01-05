@@ -58,23 +58,19 @@ public class AddDAO {
 
     public void addPersonalData(String id,
                                 String idAddress,
-                                String idRelative,
-                                String idWork,
                                 String name,
                                 String patronymic,
                                 String surname,
                                 String phoneNumber) {
-        final String ADD_PD_QUERY = "INSERT INTO Personal_data (id, id_address, id_relative, id_work, name, patronymic, surname, phone_number) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
+        final String ADD_PD_QUERY = "INSERT INTO Personal_data (id, id_address, name, patronymic, surname, phone_number) VALUES (?, ?, ?, ?, ?, ?);";
 
         try(PreparedStatement preparedStatement = connection.prepareStatement(ADD_PD_QUERY)) {
             preparedStatement.setInt(1, Integer.parseInt(id));
             preparedStatement.setInt(2, Integer.parseInt(idAddress));
-            preparedStatement.setInt(3, Integer.parseInt(idRelative));
-            preparedStatement.setInt(4, Integer.parseInt(idWork));
-            preparedStatement.setString(5, name);
-            preparedStatement.setString(6, patronymic);
-            preparedStatement.setString(7, surname);
-            preparedStatement.setString(8, phoneNumber);
+            preparedStatement.setString(3, name);
+            preparedStatement.setString(4, patronymic);
+            preparedStatement.setString(5, surname);
+            preparedStatement.setString(6, phoneNumber);
 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {

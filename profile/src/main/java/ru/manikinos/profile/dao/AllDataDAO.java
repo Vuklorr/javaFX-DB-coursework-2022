@@ -78,14 +78,12 @@ public class AllDataDAO {
             while (resultSet.next()) {
                 int id = resultSet.getInt(1);
                 int idAddress = resultSet.getInt(2);
-                int idRelative = resultSet.getInt(3);
-                int idWork = resultSet.getInt(4);
-                String name = resultSet.getString(5);
-                String patronymic = resultSet.getString(6);
-                String surname = resultSet.getString(7);
-                String phoneNumber = resultSet.getString(8);
+                String name = resultSet.getString(3);
+                String patronymic = resultSet.getString(4);
+                String surname = resultSet.getString(5);
+                String phoneNumber = resultSet.getString(6);
 
-                personalData.add(new PersonalData(id, idAddress, idRelative, idWork, name, patronymic, surname, phoneNumber));
+                personalData.add(new PersonalData(id, idAddress, name, patronymic, surname, phoneNumber));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

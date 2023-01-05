@@ -51,8 +51,6 @@ public class SelectionMode {
 
     public void personalData(TextField idPDTextField,
                              TextField idAddressPDTextField,
-                             TextField idRelativePDTextField,
-                             TextField idWorkPDTextField,
                              TextField namePDTextField,
                              TextField patronymicPDTextField,
                              TextField surnamePDTextField,
@@ -63,8 +61,6 @@ public class SelectionMode {
             if(newPD != null) {
                 idPDTextField.setText(String.valueOf(newPD.getId()));
                 idAddressPDTextField.setText(String.valueOf(newPD.getIdAddress()));
-                idRelativePDTextField.setText(String.valueOf(newPD.getIdRelative()));
-                idWorkPDTextField.setText(String.valueOf(newPD.getIdWork()));
                 namePDTextField.setText(newPD.getName());
                 patronymicPDTextField.setText(newPD.getPatronymic());
                 surnamePDTextField.setText(newPD.getSurname());

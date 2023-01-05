@@ -54,13 +54,6 @@ public class MainController {
 
     @FXML
     private TableColumn<Document, LocalDate> dataStartDocumentColumn;
-
-    @FXML
-    private TableColumn<WorkActivity, LocalDate> dateOfDismissalWAColumn;
-
-    @FXML
-    private TableColumn<WorkActivity, LocalDate> dateOfHiringWAColumn;
-
     @FXML
     private Button addDocumentButton;
 
@@ -87,9 +80,6 @@ public class MainController {
     private TableColumn<Address, Integer> flatAddressColumn;
 
     @FXML
-    private TableColumn<WorkActivity, Integer> hoursWorkedWAColumn;
-
-    @FXML
     private TableColumn<Address, String> houseAddressColumn;
 
     @FXML
@@ -108,40 +98,17 @@ public class MainController {
     private TableColumn<Document, Integer> idPDDocumentColumn;
 
     @FXML
-    private TableColumn<Relative, Integer> idRelativeColumn;
-
-    @FXML
-    private TableColumn<PersonalData, Integer> idRelativePDColumn;
-
-    @FXML
     private TableColumn<Type, Integer> idTypeColumn;
 
     @FXML
     private TableColumn<Document, Integer> idTypeDocumentColumn;
 
     @FXML
-    private TableColumn<WorkActivity, Integer> idWAColumn;
-
-    @FXML
-    private TableColumn<PersonalData, Integer> idWorkPDColumn;
-
-    @FXML
     private TableColumn<PersonalData, String> namePDColumn;
-
-    @FXML
-    private TableColumn<Relative, String> nameRelativeColumn;
-
     @FXML
     private TableColumn<Type, String> nameTypeColumn;
-
-    @FXML
-    private TableColumn<WorkActivity, String> nameWAColumn;
-
     @FXML
     private TableColumn<PersonalData, String> patronymicPDColumn;
-
-    @FXML
-    private TableColumn<PersonalData, String> patronymicRelativeColumn;
 
     @FXML
     private Button updatePDButton;
@@ -156,10 +123,6 @@ public class MainController {
     @FXML
     private TextField idAddressPDTextField;
     @FXML
-    private TextField idRelativePDTextField;
-    @FXML
-    private TextField idWorkPDTextField;
-    @FXML
     private TextField namePDTextField;
     @FXML
     private TextField patronymicPDTextField;
@@ -170,40 +133,29 @@ public class MainController {
 
     @FXML
     private TableColumn<PersonalData, String> phoneNumberPDColumn;
-
-    @FXML
-    private TableColumn<Relative, String> phoneNumberRelativeColumn;
-
     @FXML
     private TableColumn<Address, String> regionAddressColumn;
 
     @FXML
-    private Button relativeAcceptButton;
+    private Button addTypeRelationshipButton;
 
     @FXML
-    private Button relativeAddButton;
+    private Button updateTypeRelationshipButton;
 
     @FXML
-    private Button relativeCancelButton;
+    private Button deleteTypeRelationshipButton;
 
     @FXML
-    private Button relativeDeleteButton;
-
+    private Button addFRButton;
     @FXML
-    private TableView<Relative> relativeTable;
-
+    private Button deleteFRButton;
     @FXML
-    private TableColumn<WorkActivity, Integer> salaryWAColumn;
-
+    private Button updateFRButton;
     @FXML
     private TableColumn<Address, String> streetAddressColumn;
 
     @FXML
     private TableColumn<PersonalData, String> surnamePDColumn;
-
-    @FXML
-    private TableColumn<Relative, String> surnameRelativeColumn;
-
     @FXML
     private Button updateTypeButton;
 
@@ -227,15 +179,35 @@ public class MainController {
 
     @FXML
     private Button waDeleteButton;
-
-    @FXML
-    private TableView<WorkActivity> waTable;
-
     @FXML
     private TextField idTypeTextField;
-
     @FXML
     private TextField nameTypeTextField;
+    @FXML
+    private TextField idTypeRelationshipTextField;
+    @FXML
+    private TextField nameTypeRelationshipTextField;
+    @FXML
+    private TextField idFirstFRTextField;
+    @FXML
+    private TextField idSecondFRTextField;
+    @FXML
+    private TextField idTypeFRTextField;
+    @FXML
+    private TableView<?> typeRelationshipTable;
+    @FXML
+    private TableColumn<?,?> idTypeRelationshipColumn;
+    @FXML
+    private TableColumn<?,?> nameTypeRelationshipColumn;
+    @FXML
+    private TableView<?> familyRelationsTable;
+    @FXML
+    private TableColumn<?,?> idFirstFRColumn;
+    @FXML
+    private TableColumn<?,?> idSecondFRColumn;
+    @FXML
+    private TableColumn<?,?> idTypeFRColumn;
+
     private final InitData initData = new InitData();
     private final SelectionMode selectionMode = new SelectionMode();
     private final AddDAO addDAO = new AddDAO();
@@ -278,8 +250,6 @@ public class MainController {
 
         initData.initPersonalData(idPDColumn,
                 idAddressPDColumn,
-                idRelativePDColumn,
-                idWorkPDColumn,
                 namePDColumn,
                 patronymicPDColumn,
                 surnamePDColumn,
@@ -287,8 +257,6 @@ public class MainController {
                 personalDataTable);
         selectionMode.personalData(idPDTextField,
                 idAddressPDTextField,
-                idRelativePDTextField,
-                idWorkPDTextField,
                 namePDTextField,
                 patronymicPDTextField,
                 surnamePDTextField,
@@ -407,19 +375,29 @@ public class MainController {
     }
 
     @FXML
-    private void addPersonalData() {
+    private void addFamilyRelations(ActionEvent event) {
+
+    }
+
+    @FXML
+    private void deleteFamilyRelations(ActionEvent event) {
+
+    }
+
+    @FXML
+    private void updateFamilyRelations(ActionEvent event) {
+
+    }
+    @FXML
+    private void addPersonalData(ActionEvent event) {
         addDAO.addPersonalData(idPDTextField.getText(),
                 idAddressPDTextField.getText(),
-                idRelativePDTextField.getText(),
-                idWorkPDTextField.getText(),
                 namePDTextField.getText(),
                 patronymicPDTextField.getText(),
                 surnamePDTextField.getText(),
                 phoneNumberPDTextField.getText());
         initData.initPersonalData(idPDColumn,
                 idAddressPDColumn,
-                idRelativePDColumn,
-                idWorkPDColumn,
                 namePDColumn,
                 patronymicPDColumn,
                 surnamePDColumn,
@@ -428,12 +406,10 @@ public class MainController {
     }
 
     @FXML
-    private void deletePersonalData() {
+    private void deletePersonalData(ActionEvent event) {
         deleteDAO.deletePersonalData(idPDTextField.getText());
         initData.initPersonalData(idPDColumn,
                 idAddressPDColumn,
-                idRelativePDColumn,
-                idWorkPDColumn,
                 namePDColumn,
                 patronymicPDColumn,
                 surnamePDColumn,
@@ -442,19 +418,15 @@ public class MainController {
     }
 
     @FXML
-    private void updatePersonalData() {
+    private void updatePersonalData(ActionEvent event) {
         updateDAO.updatePersonalData(idPDTextField.getText(),
                 idAddressPDTextField.getText(),
-                idRelativePDTextField.getText(),
-                idWorkPDTextField.getText(),
                 namePDTextField.getText(),
                 patronymicPDTextField.getText(),
                 surnamePDTextField.getText(),
                 phoneNumberPDTextField.getText());
         initData.initPersonalData(idPDColumn,
                 idAddressPDColumn,
-                idRelativePDColumn,
-                idWorkPDColumn,
                 namePDColumn,
                 patronymicPDColumn,
                 surnamePDColumn,
@@ -480,4 +452,17 @@ public class MainController {
         initData.initType(idTypeColumn, nameTypeColumn, typeTable);
     }
 
+    @FXML
+    private void addTypeRelationship(ActionEvent event) {
+
+    }
+
+    @FXML
+    private void deleteTypeRelationship(ActionEvent event) {
+
+    }
+    @FXML
+    private void updateTypeRelationship(ActionEvent event) {
+
+    }
 }

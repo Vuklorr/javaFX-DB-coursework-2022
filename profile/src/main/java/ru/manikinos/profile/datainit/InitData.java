@@ -56,8 +56,6 @@ public class InitData {
 
     public void initPersonalData(TableColumn<PersonalData, Integer> idPDColumn,
                                  TableColumn<Address, Integer> idAddressPDColumn,
-                                 TableColumn<PersonalData, Integer> idRelativePDColumn,
-                                 TableColumn<PersonalData, Integer> idWorkPDColumn,
                                  TableColumn<PersonalData, String> namePDColumn,
                                  TableColumn<PersonalData, String> patronymicPDColumn,
                                  TableColumn<PersonalData, String> surnamePDColumn,
@@ -65,8 +63,6 @@ public class InitData {
                                  TableView<PersonalData> personalDataTable) {
         idPDColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         idAddressPDColumn.setCellValueFactory(new PropertyValueFactory<>("idAddress"));
-        idRelativePDColumn.setCellValueFactory(new PropertyValueFactory<>("idRelative"));
-        idWorkPDColumn.setCellValueFactory(new PropertyValueFactory<>("idWork"));
         namePDColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         patronymicPDColumn.setCellValueFactory(new PropertyValueFactory<>("patronymic"));
         surnamePDColumn.setCellValueFactory(new PropertyValueFactory<>("surname"));
