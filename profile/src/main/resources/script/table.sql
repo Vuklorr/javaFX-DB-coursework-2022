@@ -20,16 +20,6 @@ create table PUBLIC.DOCUMENT
     primary key (ID)
 );
 
-create table PUBLIC.RELATIVE
-(
-    ID INTEGER auto_increment,
-    NAME CHARACTER VARYING(255),
-    PATRONYMIC CHARACTER VARYING(255),
-    SURNAME CHARACTER VARYING(255),
-    PHONE_NUMBER CHARACTER VARYING(255),
-    primary key (ID)
-);
-
 create table PUBLIC.TYPE
 (
     ID INTEGER auto_increment,
@@ -37,31 +27,40 @@ create table PUBLIC.TYPE
     primary key (ID)
 );
 
-create table PUBLIC.WORK_ACTIVITY
-(
-    ID INTEGER auto_increment,
-    NAME_WORK CHARACTER VARYING(255),
-    RATE INTEGER,
-    SALARY CHARACTER VARYING(255),
-    HOURS_WORKED INTEGER,
-    DATE_OF_HIRING DATE,
-    DATE_OF_DISMISSAL DATE,
-    primary key (ID)
+CREATE TABLE Personal_data (
+                               id INT PRIMARY KEY AUTO_INCREMENT,
+                               id_address INT,
+                               name VARCHAR(255),
+                               patronymic VARCHAR(255),
+                               surname VARCHAR(255),
+                               phone_number VARCHAR(255),
+                               FOREIGN KEY (id_address) REFERENCES Address(id)
 );
 
-create table PUBLIC.PERSONAL_DATA
-(
-    ID INTEGER auto_increment,
-    ID_ADDRESS INTEGER,
-    ID_RELATIVE INTEGER,
-    ID_WORK INTEGER,
-    NAME CHARACTER VARYING(255),
-    PATRONYMIC CHARACTER VARYING(255),
-    SURNAME CHARACTER VARYING(255),
-    PHONE_NUMBER CHARACTER VARYING(255),
-    primary key (ID),
-    foreign key (ID_ADDRESS) references PUBLIC.ADDRESS,
-    foreign key (ID_RELATIVE) references PUBLIC.RELATIVE,
-    foreign key (ID_WORK) references PUBLIC.WORK_ACTIVITY
+CREATE TABLE Type_of_relationship (
+                                      id INT PRIMARY KEY AUTO_INCREMENT,
+                                      name VARCHAR(255)
 );
 
+CREATE TABLE Family_relations (
+                                  id_first_person INT,
+                                  id_second_person INT,
+                                  id_type_of_relationship INT,
+                                  PRIMARY KEY (id_first_person, id_second_person),
+                                  FOREIGN KEY (id_type_of_relationship) REFERENCES Type_of_relationship(id)
+);
+
+CREATE TABLE Work_activity (
+                               id INT PRIMARY KEY AUTO_INCREMENT,
+                               name_company VARCHAR(255),
+                               name_work VARCHAR(255),
+                               salary INT
+);
+
+CREATE TABLE Work_activity_personal(
+                                       id_personal_data INT,
+                                       id_work INT,
+                                       date_of_hiring DATE,
+                                       date_of_dismissal DATE,
+                                       PRIMARY KEY(id_personal_data, id_work)
+);
