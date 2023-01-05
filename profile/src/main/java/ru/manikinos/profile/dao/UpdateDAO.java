@@ -3,6 +3,7 @@ package ru.manikinos.profile.dao;
 import ru.manikinos.profile.util.Connections;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
@@ -36,6 +37,31 @@ public class UpdateDAO {
             preparedStatement.setString(5, house);
             preparedStatement.setInt(6, Integer.parseInt(flat));
             preparedStatement.setInt(7, Integer.parseInt(id));
+
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void updateDocument(String id,
+                               String idType,
+                               String idPersonalData,
+                               String startDate,
+                               String endDate) {
+        final String UPDATE_DOCUMENT_QUERY = "UPDATE Document\n" +
+                "SET id_type = ?,\n" +
+                "    id_personal_data = ?,\n" +
+                "    start_date = ?,\n" +
+                "    end_date = ?\n" +
+                "WHERE id = ?;";
+
+        try(PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_DOCUMENT_QUERY)) {
+            preparedStatement.setInt(1, Integer.parseInt(idType));
+            preparedStatement.setInt(2, Integer.parseInt(idPersonalData));
+            preparedStatement.setDate(3, Date.valueOf(startDate));
+            preparedStatement.setDate(4, Date.valueOf(endDate));
+            preparedStatement.setInt(5, Integer.parseInt(id));
 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {

@@ -9,6 +9,7 @@ import ru.manikinos.profile.entity.Document;
 import ru.manikinos.profile.entity.Type;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
 
 public class InitData {
     private final AllDataDAO allDataDAO = new AllDataDAO();
@@ -35,7 +36,21 @@ public class InitData {
         flatAddressColumn.setCellValueFactory(new PropertyValueFactory<>("flat"));
 
         addressTable.setItems(allDataDAO.getAddressData());
+    }
+    
+    public void initDocument(TableColumn<Document, Integer> idDocumentColumn,
+                             TableColumn<Document, Integer> idTypeDocumentColumn,
+                             TableColumn<Document, Integer> idPDDocumentColumn,
+                             TableColumn<Document, LocalDate> dataStartDocumentColumn,
+                             TableColumn<Document, LocalDate> dataEndDocumentColumn,
+                             TableView<Document> documentTable) {
+        idDocumentColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+        idTypeDocumentColumn.setCellValueFactory(new PropertyValueFactory<>("idType"));
+        idPDDocumentColumn.setCellValueFactory(new PropertyValueFactory<>("idPersonalData"));
+        dataStartDocumentColumn.setCellValueFactory(new PropertyValueFactory<>("startDate"));
+        dataEndDocumentColumn.setCellValueFactory(new PropertyValueFactory<>("endDate"));
 
+        documentTable.setItems(allDataDAO.getDocumentData());
     }
 
     public void initType(TableColumn<Type, Integer> idTypeColumn,

@@ -1,8 +1,10 @@
 package ru.manikinos.profile.datainit;
 
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import ru.manikinos.profile.entity.Address;
+import ru.manikinos.profile.entity.Document;
 import ru.manikinos.profile.entity.Type;
 
 public class SelectionMode {
@@ -27,6 +29,25 @@ public class SelectionMode {
             }
         });
     }
+
+    public void documentSelected(TextField idDocumentTextField,
+                                 TextField idTypeDocumentTextField,
+                                 TextField idPDDocumentTextField,
+                                 DatePicker startDocumentDatePicker,
+                                 DatePicker endDocumentDatePicker,
+                                 TableView<Document> documentTable) {
+        TableView.TableViewSelectionModel<Document> selectionModel = documentTable.getSelectionModel();
+        selectionModel.selectedItemProperty().addListener((observableValue, document, newDocument) -> {
+            if(newDocument != null) {
+                idDocumentTextField.setText(String.valueOf(newDocument.getId()));
+                idTypeDocumentTextField.setText(String.valueOf(newDocument.getIdType()));
+                idPDDocumentTextField.setText(String.valueOf(newDocument.getIdPersonalData()));
+                startDocumentDatePicker.setValue(newDocument.getStartDate());
+                endDocumentDatePicker.setValue(newDocument.getEndDate());
+            }
+        });
+    }
+
     public void typeSelected(TextField idTypeTextField, TextField nameTypeTextField, TableView<Type> typeTable) {
         TableView.TableViewSelectionModel<Type> selectionModel = typeTable.getSelectionModel();
         selectionModel.selectedItemProperty().addListener((observableValue, type, newType) -> {

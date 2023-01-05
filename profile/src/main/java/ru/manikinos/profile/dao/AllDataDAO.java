@@ -3,6 +3,7 @@ package ru.manikinos.profile.dao;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import ru.manikinos.profile.entity.Address;
+import ru.manikinos.profile.entity.Document;
 import ru.manikinos.profile.entity.Type;
 import ru.manikinos.profile.util.Connections;
 
@@ -10,6 +11,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,10 +25,7 @@ public class AllDataDAO {
         ObservableList<Address> addresses = FXCollections.observableArrayList();
         final String GET_ADDRESSES_QUERY = "SELECT*\n" +
                 "FROM Address;";
-        try(
-            Connection connection = Connections.getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(GET_ADDRESSES_QUERY)
-            ) {
+        try(PreparedStatement preparedStatement = connection.prepareStatement(GET_ADDRESSES_QUERY)) {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
@@ -42,10 +41,30 @@ public class AllDataDAO {
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
         }
         return addresses;
+    }
+
+    public ObservableList<Document> getDocumentData() {
+        ObservableList<Document> documents = FXCollections.observableArrayList();
+        final String GET_DOCUMENTS_QUERY = "SELECT*\n" +
+                "FROM Document;";
+        try(PreparedStatement preparedStatement = connection.prepareStatement(GET_DOCUMENTS_QUERY)){
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                int id = resultSet.getInt(1);
+                int idType = resultSet.getInt(2);
+                int idPersonalData = resultSet.getInt(3);
+                LocalDate startDate = LocalDate.parse(resultSet.getString(4));
+                LocalDate endDate = LocalDate.parse(resultSet.getString(5));
+
+                documents.add(new Document(id, idType, idPersonalData, startDate, endDate));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return documents;
     }
 
     public ObservableList<Type> getTypeData() {

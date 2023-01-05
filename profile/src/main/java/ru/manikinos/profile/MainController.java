@@ -2,10 +2,7 @@ package ru.manikinos.profile;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import ru.manikinos.profile.dao.AddDAO;
 import ru.manikinos.profile.dao.DeleteDAO;
 import ru.manikinos.profile.dao.UpdateDAO;
@@ -65,17 +62,24 @@ public class MainController {
     private TableColumn<WorkActivity, LocalDate> dateOfHiringWAColumn;
 
     @FXML
-    private Button documentAcceptButton;
+    private Button addDocumentButton;
 
     @FXML
-    private Button documentAddButton;
+    private Button updateDocumentButton;
 
     @FXML
-    private Button documentCancelButton;
+    private Button deleteDocumentButton;
 
     @FXML
-    private Button documentDeleteButton;
-
+    private TextField idDocumentTextField;
+    @FXML
+    private TextField idTypeDocumentTextField;
+    @FXML
+    private TextField idPDDocumentTextField;
+    @FXML
+    private DatePicker startDocumentDatePicker;
+    @FXML
+    private DatePicker endDocumentDatePicker;
     @FXML
     private TableView<Document> documentTable;
 
@@ -246,6 +250,19 @@ public class MainController {
                 flatAddressTextField,
                 addressTable);
 
+        initData.initDocument(idDocumentColumn,
+                idTypeDocumentColumn,
+                idPDDocumentColumn,
+                dataStartDocumentColumn,
+                dataEndDocumentColumn,
+                documentTable);
+        selectionMode.documentSelected(idDocumentTextField,
+                idTypeDocumentTextField,
+                idPDDocumentTextField,
+                startDocumentDatePicker,
+                endDocumentDatePicker,
+                documentTable);
+
         initData.initType(idTypeColumn, nameTypeColumn, typeTable);
         selectionMode.typeSelected(idTypeTextField, nameTypeTextField, typeTable);
 
@@ -302,6 +319,59 @@ public class MainController {
                 houseAddressColumn,
                 flatAddressColumn,
                 addressTable);
+    }
+
+    @FXML
+    private void addDocument(ActionEvent event) {
+        if(startDocumentDatePicker.getValue().isBefore(endDocumentDatePicker.getValue())) {
+            addDAO.addDocument(idDocumentTextField.getText(),
+                    idTypeDocumentTextField.getText(),
+                    idPDDocumentTextField.getText(),
+                    startDocumentDatePicker.getValue().toString(),
+                    endDocumentDatePicker.getValue().toString());
+            initData.initDocument(idDocumentColumn,
+                    idTypeDocumentColumn,
+                    idPDDocumentColumn,
+                    dataStartDocumentColumn,
+                    dataEndDocumentColumn,
+                    documentTable);
+        } else {
+            throw new UnsupportedOperationException("StartDate should be before EndDate");
+        }
+    }
+
+    @FXML
+    private void deleteDocument(ActionEvent event) {
+        deleteDAO.deleteDocument(idDocumentTextField.getText());
+        initData.initDocument(idDocumentColumn,
+                idTypeDocumentColumn,
+                idPDDocumentColumn,
+                dataStartDocumentColumn,
+                dataEndDocumentColumn,
+                documentTable);
+    }
+
+    @FXML
+    private void updateDocument(ActionEvent event) {
+        if(startDocumentDatePicker.getValue().isBefore(endDocumentDatePicker.getValue())) {
+
+
+            updateDAO.updateDocument(idDocumentTextField.getText(),
+                    idTypeDocumentTextField.getText(),
+                    idPDDocumentTextField.getText(),
+                    startDocumentDatePicker.getValue()
+                            .toString(),
+                    endDocumentDatePicker.getValue()
+                            .toString());
+            initData.initDocument(idDocumentColumn,
+                    idTypeDocumentColumn,
+                    idPDDocumentColumn,
+                    dataStartDocumentColumn,
+                    dataEndDocumentColumn,
+                    documentTable);
+        } else {
+            throw new UnsupportedOperationException("StartDate should be before EndDate");
+        }
     }
 
     @FXML
