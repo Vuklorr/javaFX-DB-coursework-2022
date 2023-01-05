@@ -69,6 +69,40 @@ public class UpdateDAO {
         }
     }
 
+    public void updatePersonalData(String id,
+                                   String idAddress,
+                                   String idRelative,
+                                   String idWork,
+                                   String name,
+                                   String patronymic,
+                                   String surname,
+                                   String phoneNumber) {
+        final String UPDATE_PD_QUERY = "UPDATE Personal_data\n" +
+                                       "SET id_address = ?,\n" +
+                                       "    id_relative = ?,\n" +
+                                       "    id_work = ?,\n" +
+                                       "    name = ?,\n" +
+                                       "    patronymic = ?,\n" +
+                                       "    surname = ?,\n" +
+                                       "    phone_number = ?\n" +
+                                       "WHERE id = ?;";
+
+        try(PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_PD_QUERY)) {
+            preparedStatement.setInt(1, Integer.parseInt(idAddress));
+            preparedStatement.setInt(2, Integer.parseInt(idRelative));
+            preparedStatement.setInt(3, Integer.parseInt(idWork));
+            preparedStatement.setString(4, name);
+            preparedStatement.setString(5, patronymic);
+            preparedStatement.setString(6, surname);
+            preparedStatement.setString(7, phoneNumber);
+            preparedStatement.setInt(8, Integer.parseInt(id));
+
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public void updateType(String id, String name) {
         final String UPDATE_TYPE_QUERY = "UPDATE Type\n" +
                 "SET name = ?\n" +

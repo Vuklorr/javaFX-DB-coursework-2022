@@ -23,6 +23,11 @@ public class DeleteDAO {
 
     }
 
+    public void deletePersonalData(String id) {
+        final String DELETE_DOCUMENT_QUERY = "DELETE FROM Personal_data WHERE id = ?;";
+        delete(DELETE_DOCUMENT_QUERY, Integer.parseInt(id));
+    }
+
     public void deleteType(String id) {
         final String DELETE_TYPE_QUERY = "DELETE FROM Type WHERE id = ?;";
         delete(DELETE_TYPE_QUERY, Integer.parseInt(id));

@@ -6,6 +6,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import ru.manikinos.profile.dao.AllDataDAO;
 import ru.manikinos.profile.entity.Address;
 import ru.manikinos.profile.entity.Document;
+import ru.manikinos.profile.entity.PersonalData;
 import ru.manikinos.profile.entity.Type;
 
 import java.sql.SQLException;
@@ -51,6 +52,27 @@ public class InitData {
         dataEndDocumentColumn.setCellValueFactory(new PropertyValueFactory<>("endDate"));
 
         documentTable.setItems(allDataDAO.getDocumentData());
+    }
+
+    public void initPersonalData(TableColumn<PersonalData, Integer> idPDColumn,
+                                 TableColumn<Address, Integer> idAddressPDColumn,
+                                 TableColumn<PersonalData, Integer> idRelativePDColumn,
+                                 TableColumn<PersonalData, Integer> idWorkPDColumn,
+                                 TableColumn<PersonalData, String> namePDColumn,
+                                 TableColumn<PersonalData, String> patronymicPDColumn,
+                                 TableColumn<PersonalData, String> surnamePDColumn,
+                                 TableColumn<PersonalData, String> phoneNumberPDColumn,
+                                 TableView<PersonalData> personalDataTable) {
+        idPDColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+        idAddressPDColumn.setCellValueFactory(new PropertyValueFactory<>("idAddress"));
+        idRelativePDColumn.setCellValueFactory(new PropertyValueFactory<>("idRelative"));
+        idWorkPDColumn.setCellValueFactory(new PropertyValueFactory<>("idWork"));
+        namePDColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        patronymicPDColumn.setCellValueFactory(new PropertyValueFactory<>("patronymic"));
+        surnamePDColumn.setCellValueFactory(new PropertyValueFactory<>("surname"));
+        phoneNumberPDColumn.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
+
+        personalDataTable.setItems(allDataDAO.getPDData());
     }
 
     public void initType(TableColumn<Type, Integer> idTypeColumn,

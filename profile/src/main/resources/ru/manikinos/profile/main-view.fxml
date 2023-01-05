@@ -21,22 +21,41 @@
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <TableView fx:id="PDTable" layoutX="14.0" layoutY="31.0" prefHeight="200.0" prefWidth="698.0">
+                  <TableView fx:id="personalDataTable" layoutX="14.0" layoutY="31.0" prefHeight="200.0" prefWidth="739.0">
                     <columns>
                       <TableColumn fx:id="idPDColumn" prefWidth="28.0" text="id" />
-                      <TableColumn fx:id="idAddressPDColumn" prefWidth="82.0" text="id адреса" />
-                        <TableColumn fx:id="idRelativePDColumn" prefWidth="132.0" text="id родственника" />
-                        <TableColumn fx:id="idWorkPDColumn" prefWidth="86.0" text="id работы" />
-                        <TableColumn fx:id="namePDColumn" prefWidth="52.0" text="Имя" />
-                        <TableColumn fx:id="patronymicPDColumn" prefWidth="96.0" text="Отчество" />
-                        <TableColumn fx:id="surnamePDColumn" prefWidth="86.0" text="Фамилия" />
-                        <TableColumn fx:id="phoneNumberPDColumn" prefWidth="134.0" text="Номер телефона" />
+                      <TableColumn fx:id="idAddressPDColumn" prefWidth="60.0" text="id адреса" />
+                        <TableColumn fx:id="idRelativePDColumn" prefWidth="71.0" text="id родственника" />
+                        <TableColumn fx:id="idWorkPDColumn" prefWidth="69.0" text="id работы" />
+                        <TableColumn fx:id="namePDColumn" prefWidth="98.0" text="Имя" />
+                        <TableColumn fx:id="patronymicPDColumn" prefWidth="144.0" text="Отчество" />
+                        <TableColumn fx:id="surnamePDColumn" prefWidth="127.0" text="Фамилия" />
+                        <TableColumn fx:id="phoneNumberPDColumn" prefWidth="135.0" text="Номер телефона" />
                     </columns>
                   </TableView>
-                  <Button fx:id="pdDeleteButton" layoutX="487.0" layoutY="246.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="97.0" text="Удалить" />
-                  <Button fx:id="pdAddButton" layoutX="604.0" layoutY="246.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="108.0" text="Добавить" />
-                  <Button fx:id="pdCancelButton" layoutX="489.0" layoutY="293.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="95.0" text="Отменить" />
-                  <Button fx:id="pdAcceptButton" layoutX="603.0" layoutY="293.0" mnemonicParsing="false" text="Подтвердить" />
+                  <AnchorPane layoutX="14.0" layoutY="246.0" prefHeight="258.0" prefWidth="738.0">
+                     <children>
+                        <TextField fx:id="idPDTextField" layoutX="137.0" layoutY="14.0" prefHeight="24.0" prefWidth="212.0" promptText="Введите id" />
+                        <Button fx:id="deletePDButton" layoutX="401.0" layoutY="210.0" mnemonicParsing="false" onAction="#deletePersonalData" prefHeight="24.0" prefWidth="111.0" text="Удалить" />
+                        <Button fx:id="addPDButton" layoutX="625.0" layoutY="210.0" mnemonicParsing="false" onAction="#addPersonalData" prefHeight="24.0" prefWidth="108.0" text="Добавить" />
+                        <Button fx:id="updatePDButton" layoutX="520.0" layoutY="210.0" mnemonicParsing="false" onAction="#updatePersonalData" prefHeight="24.0" prefWidth="98.0" text="Изменить" />
+                        <TextField fx:id="idAddressPDTextField" layoutX="137.0" layoutY="61.0" prefHeight="24.0" prefWidth="211.0" promptText="Введите id адреса" />
+                        <TextField fx:id="idRelativePDTextField" layoutX="138.0" layoutY="105.0" prefHeight="24.0" prefWidth="210.0" promptText="Введите id родственника" />
+                        <TextField fx:id="idWorkPDTextField" layoutX="139.0" layoutY="151.0" prefHeight="24.0" prefWidth="208.0" promptText="Введите id работы" />
+                        <Text layoutX="14.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID" />
+                        <Text layoutX="13.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID адреса" />
+                        <Text layoutX="13.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID родственника" />
+                        <Text layoutX="13.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID работы" />
+                        <TextField fx:id="namePDTextField" layoutX="502.0" layoutY="14.0" prefHeight="24.0" prefWidth="232.0" promptText="Введите имя" />
+                        <TextField fx:id="patronymicPDTextField" layoutX="503.0" layoutY="61.0" prefHeight="24.0" prefWidth="230.0" promptText="Введите отчество" />
+                        <TextField fx:id="surnamePDTextField" layoutX="502.0" layoutY="105.0" prefHeight="24.0" prefWidth="232.0" promptText="Введите фамилию" />
+                        <TextField fx:id="phoneNumberPDTextField" layoutX="504.0" layoutY="151.0" prefHeight="24.0" prefWidth="227.0" promptText="Введите номер телефона" />
+                        <Text layoutX="377.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Имя" />
+                        <Text layoutX="377.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Отчество" />
+                        <Text layoutX="377.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Фамилия" />
+                        <Text layoutX="377.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Номер телефона" />
+                     </children>
+                  </AnchorPane>
                </children>
             </AnchorPane>
         </content>
@@ -45,13 +64,13 @@
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <TableView fx:id="documentTable" layoutX="14.0" layoutY="30.0" prefHeight="200.0" prefWidth="694.0">
+                  <TableView fx:id="documentTable" layoutX="14.0" layoutY="14.0" prefHeight="271.0" prefWidth="741.0">
                     <columns>
                       <TableColumn fx:id="idDocumentColumn" prefWidth="75.0" text="id" />
                       <TableColumn fx:id="idTypeDocumentColumn" prefWidth="75.0" text="id типа" />
                         <TableColumn fx:id="idPDDocumentColumn" prefWidth="165.0" text="id личных данных" />
                         <TableColumn fx:id="dataStartDocumentColumn" minWidth="0.0" prefWidth="188.0" text="Дата начала действия" />
-                        <TableColumn fx:id="dataEndDocumentColumn" prefWidth="189.0" text="Дата конца действия" />
+                        <TableColumn fx:id="dataEndDocumentColumn" prefWidth="233.0" text="Дата конца действия" />
                     </columns>
                   </TableView>
                   <AnchorPane layoutX="14.0" layoutY="292.0" prefHeight="200.0" prefWidth="525.0">
@@ -61,11 +80,11 @@
                         <Text layoutX="13.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID Личных данных" />
                         <Text layoutX="14.0" layoutY="132.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Дата начала действия" />
                         <Text layoutX="13.0" layoutY="169.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Дата конца действия" />
-                        <TextField fx:id="idDocumentTextField" layoutX="179.0" layoutY="9.0" prefHeight="24.0" prefWidth="234.0" />
-                        <TextField fx:id="idTypeDocumentTextField" layoutX="179.0" layoutY="42.0" prefHeight="24.0" prefWidth="234.0" />
-                        <TextField fx:id="idPDDocumentTextField" layoutX="179.0" layoutY="80.0" prefHeight="24.0" prefWidth="234.0" />
-                        <DatePicker fx:id="endDocumentDatePicker" layoutX="179.0" layoutY="152.0" prefHeight="24.0" prefWidth="234.0" />
-                        <DatePicker fx:id="startDocumentDatePicker" layoutX="179.0" layoutY="115.0" prefHeight="24.0" prefWidth="233.0" />
+                        <TextField fx:id="idDocumentTextField" layoutX="179.0" layoutY="9.0" prefHeight="24.0" prefWidth="234.0" promptText="Введите id" />
+                        <TextField fx:id="idTypeDocumentTextField" layoutX="179.0" layoutY="42.0" prefHeight="24.0" prefWidth="234.0" promptText="Введите id типа" />
+                        <TextField fx:id="idPDDocumentTextField" layoutX="179.0" layoutY="80.0" prefHeight="24.0" prefWidth="234.0" promptText="Введите id личных данных" />
+                        <DatePicker fx:id="endDocumentDatePicker" layoutX="179.0" layoutY="152.0" prefHeight="24.0" prefWidth="234.0" promptText="Выберите дату конца" />
+                        <DatePicker fx:id="startDocumentDatePicker" layoutX="179.0" layoutY="115.0" prefHeight="24.0" prefWidth="233.0" promptText="Выберите дату начала" />
                         <Button fx:id="deleteDocumentButton" layoutX="441.0" layoutY="80.0" mnemonicParsing="false" onAction="#deleteDocument" prefHeight="24.0" prefWidth="108.0" text="Удалить" />
                         <Button fx:id="addDocumentButton" layoutX="441.0" layoutY="8.0" mnemonicParsing="false" onAction="#addDocument" prefHeight="24.0" prefWidth="109.0" text="Добавить" />
                         <Button fx:id="updateDocumentButton" layoutX="441.0" layoutY="42.0" mnemonicParsing="false" onAction="#updateDocument" prefHeight="24.0" prefWidth="108.0" text="Изменить" />

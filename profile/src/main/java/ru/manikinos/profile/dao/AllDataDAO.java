@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import ru.manikinos.profile.entity.Address;
 import ru.manikinos.profile.entity.Document;
+import ru.manikinos.profile.entity.PersonalData;
 import ru.manikinos.profile.entity.Type;
 import ru.manikinos.profile.util.Connections;
 
@@ -65,6 +66,31 @@ public class AllDataDAO {
             throw new RuntimeException(e);
         }
         return documents;
+    }
+
+    public ObservableList<PersonalData> getPDData() {
+        ObservableList<PersonalData> personalData = FXCollections.observableArrayList();
+        final String GET_PD_QUERY = "SELECT*\n" +
+                "FROM Personal_data;";
+        try(PreparedStatement preparedStatement = connection.prepareStatement(GET_PD_QUERY)) {
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                int id = resultSet.getInt(1);
+                int idAddress = resultSet.getInt(2);
+                int idRelative = resultSet.getInt(3);
+                int idWork = resultSet.getInt(4);
+                String name = resultSet.getString(5);
+                String patronymic = resultSet.getString(6);
+                String surname = resultSet.getString(7);
+                String phoneNumber = resultSet.getString(8);
+
+                personalData.add(new PersonalData(id, idAddress, idRelative, idWork, name, patronymic, surname, phoneNumber));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return personalData;
     }
 
     public ObservableList<Type> getTypeData() {

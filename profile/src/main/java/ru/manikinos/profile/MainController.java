@@ -16,7 +16,7 @@ import java.time.LocalDate;
 public class MainController {
 
     @FXML
-    private TableView<PersonalData> PDTable;
+    private TableView<PersonalData> personalDataTable;
 
     @FXML
     private Button updateAddressButton;
@@ -144,16 +144,29 @@ public class MainController {
     private TableColumn<PersonalData, String> patronymicRelativeColumn;
 
     @FXML
-    private Button pdAcceptButton;
+    private Button updatePDButton;
 
     @FXML
-    private Button pdAddButton;
+    private Button addPDButton;
 
     @FXML
-    private Button pdCancelButton;
-
+    private Button deletePDButton;
     @FXML
-    private Button pdDeleteButton;
+    private TextField idPDTextField;
+    @FXML
+    private TextField idAddressPDTextField;
+    @FXML
+    private TextField idRelativePDTextField;
+    @FXML
+    private TextField idWorkPDTextField;
+    @FXML
+    private TextField namePDTextField;
+    @FXML
+    private TextField patronymicPDTextField;
+    @FXML
+    private TextField surnamePDTextField;
+    @FXML
+    private TextField phoneNumberPDTextField;
 
     @FXML
     private TableColumn<PersonalData, String> phoneNumberPDColumn;
@@ -262,6 +275,25 @@ public class MainController {
                 startDocumentDatePicker,
                 endDocumentDatePicker,
                 documentTable);
+
+        initData.initPersonalData(idPDColumn,
+                idAddressPDColumn,
+                idRelativePDColumn,
+                idWorkPDColumn,
+                namePDColumn,
+                patronymicPDColumn,
+                surnamePDColumn,
+                phoneNumberPDColumn,
+                personalDataTable);
+        selectionMode.personalData(idPDTextField,
+                idAddressPDTextField,
+                idRelativePDTextField,
+                idWorkPDTextField,
+                namePDTextField,
+                patronymicPDTextField,
+                surnamePDTextField,
+                phoneNumberPDTextField,
+                personalDataTable);
 
         initData.initType(idTypeColumn, nameTypeColumn, typeTable);
         selectionMode.typeSelected(idTypeTextField, nameTypeTextField, typeTable);
@@ -372,6 +404,62 @@ public class MainController {
         } else {
             throw new UnsupportedOperationException("StartDate should be before EndDate");
         }
+    }
+
+    @FXML
+    private void addPersonalData() {
+        addDAO.addPersonalData(idPDTextField.getText(),
+                idAddressPDTextField.getText(),
+                idRelativePDTextField.getText(),
+                idWorkPDTextField.getText(),
+                namePDTextField.getText(),
+                patronymicPDTextField.getText(),
+                surnamePDTextField.getText(),
+                phoneNumberPDTextField.getText());
+        initData.initPersonalData(idPDColumn,
+                idAddressPDColumn,
+                idRelativePDColumn,
+                idWorkPDColumn,
+                namePDColumn,
+                patronymicPDColumn,
+                surnamePDColumn,
+                phoneNumberPDColumn,
+                personalDataTable);
+    }
+
+    @FXML
+    private void deletePersonalData() {
+        deleteDAO.deletePersonalData(idPDTextField.getText());
+        initData.initPersonalData(idPDColumn,
+                idAddressPDColumn,
+                idRelativePDColumn,
+                idWorkPDColumn,
+                namePDColumn,
+                patronymicPDColumn,
+                surnamePDColumn,
+                phoneNumberPDColumn,
+                personalDataTable);
+    }
+
+    @FXML
+    private void updatePersonalData() {
+        updateDAO.updatePersonalData(idPDTextField.getText(),
+                idAddressPDTextField.getText(),
+                idRelativePDTextField.getText(),
+                idWorkPDTextField.getText(),
+                namePDTextField.getText(),
+                patronymicPDTextField.getText(),
+                surnamePDTextField.getText(),
+                phoneNumberPDTextField.getText());
+        initData.initPersonalData(idPDColumn,
+                idAddressPDColumn,
+                idRelativePDColumn,
+                idWorkPDColumn,
+                namePDColumn,
+                patronymicPDColumn,
+                surnamePDColumn,
+                phoneNumberPDColumn,
+                personalDataTable);
     }
 
     @FXML

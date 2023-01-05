@@ -5,6 +5,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import ru.manikinos.profile.entity.Address;
 import ru.manikinos.profile.entity.Document;
+import ru.manikinos.profile.entity.PersonalData;
 import ru.manikinos.profile.entity.Type;
 
 public class SelectionMode {
@@ -44,6 +45,30 @@ public class SelectionMode {
                 idPDDocumentTextField.setText(String.valueOf(newDocument.getIdPersonalData()));
                 startDocumentDatePicker.setValue(newDocument.getStartDate());
                 endDocumentDatePicker.setValue(newDocument.getEndDate());
+            }
+        });
+    }
+
+    public void personalData(TextField idPDTextField,
+                             TextField idAddressPDTextField,
+                             TextField idRelativePDTextField,
+                             TextField idWorkPDTextField,
+                             TextField namePDTextField,
+                             TextField patronymicPDTextField,
+                             TextField surnamePDTextField,
+                             TextField phoneNumberPDTextField,
+                             TableView<PersonalData> personalDataTable) {
+        TableView.TableViewSelectionModel<PersonalData> selectionModel = personalDataTable.getSelectionModel();
+        selectionModel.selectedItemProperty().addListener((observableValue, personalData, newPD) -> {
+            if(newPD != null) {
+                idPDTextField.setText(String.valueOf(newPD.getId()));
+                idAddressPDTextField.setText(String.valueOf(newPD.getIdAddress()));
+                idRelativePDTextField.setText(String.valueOf(newPD.getIdRelative()));
+                idWorkPDTextField.setText(String.valueOf(newPD.getIdWork()));
+                namePDTextField.setText(newPD.getName());
+                patronymicPDTextField.setText(newPD.getPatronymic());
+                surnamePDTextField.setText(newPD.getSurname());
+                phoneNumberPDTextField.setText(String.valueOf(newPD.getPhoneNumber()));
             }
         });
     }
