@@ -4,10 +4,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import ru.manikinos.profile.dao.AllDataDAO;
-import ru.manikinos.profile.entity.Address;
-import ru.manikinos.profile.entity.Document;
-import ru.manikinos.profile.entity.PersonalData;
-import ru.manikinos.profile.entity.Type;
+import ru.manikinos.profile.entity.*;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -54,6 +51,14 @@ public class InitData {
         documentTable.setItems(allDataDAO.getDocumentData());
     }
 
+    public void initFamilyRelationsData(TableColumn<FamilyRelations, Integer> idFirstFRColumn, TableColumn<FamilyRelations, Integer> idSecondFRColumn, TableColumn<FamilyRelations, Integer> idTypeFRColumn, TableView<FamilyRelations> familyRelationsTable) {
+        idFirstFRColumn.setCellValueFactory(new PropertyValueFactory<>("idFirstPerson"));
+        idSecondFRColumn.setCellValueFactory(new PropertyValueFactory<>("idSecondPerson"));
+        idTypeFRColumn.setCellValueFactory(new PropertyValueFactory<>("idTypeOfRelationship"));
+
+        familyRelationsTable.setItems(allDataDAO.getFRData());
+    }
+
     public void initPersonalData(TableColumn<PersonalData, Integer> idPDColumn,
                                  TableColumn<Address, Integer> idAddressPDColumn,
                                  TableColumn<PersonalData, String> namePDColumn,
@@ -78,5 +83,12 @@ public class InitData {
         nameTypeColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
 
         typeTable.setItems(allDataDAO.getTypeData());
+    }
+
+    public void initTypeOfRelationship(TableColumn<TypeOfRelationship, Integer> idTypeRelationshipColumn, TableColumn<TypeOfRelationship, String> nameTypeRelationshipColumn, TableView<TypeOfRelationship> typeRelationshipTable) {
+        idTypeRelationshipColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+        nameTypeRelationshipColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+
+        typeRelationshipTable.setItems(allDataDAO.getTypeOfRelationshipData());
     }
 }

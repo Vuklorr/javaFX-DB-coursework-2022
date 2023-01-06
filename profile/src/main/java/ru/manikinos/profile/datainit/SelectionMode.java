@@ -3,10 +3,9 @@ package ru.manikinos.profile.datainit;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import ru.manikinos.profile.entity.Address;
-import ru.manikinos.profile.entity.Document;
-import ru.manikinos.profile.entity.PersonalData;
-import ru.manikinos.profile.entity.Type;
+import ru.manikinos.profile.entity.*;
+
+import java.util.List;
 
 public class SelectionMode {
     public void addressSelected(TextField idAddressTextField,
@@ -49,7 +48,23 @@ public class SelectionMode {
         });
     }
 
-    public void personalData(TextField idPDTextField,
+    public void familyRelationsSelected(TextField idFirstFRTextField, TextField idSecondFRTextField, TextField idTypeTextField, TableView<FamilyRelations> familyRelationsTable, List<String> firstSecondOldFR) {
+        TableView.TableViewSelectionModel<FamilyRelations> selectionModel = familyRelationsTable.getSelectionModel();
+        selectionModel.selectedItemProperty().addListener((observableValue, familyRelations, newFR) -> {
+            if(newFR != null) {
+                firstSecondOldFR.clear();
+
+                idFirstFRTextField.setText(String.valueOf(newFR.getIdFirstPerson()));
+                idSecondFRTextField.setText(String.valueOf(newFR.getIdSecondPerson()));
+                idTypeTextField.setText(String.valueOf(newFR.getIdTypeOfRelationship()));
+
+                firstSecondOldFR.add(idFirstFRTextField.getText());
+                firstSecondOldFR.add(idSecondFRTextField.getText());
+            }
+        });
+    }
+
+    public void personalDataSelected(TextField idPDTextField,
                              TextField idAddressPDTextField,
                              TextField namePDTextField,
                              TextField patronymicPDTextField,
@@ -75,6 +90,16 @@ public class SelectionMode {
             if(newType != null) {
                 idTypeTextField.setText(String.valueOf(newType.getId()));
                 nameTypeTextField.setText(newType.getName());
+            }
+        });
+    }
+
+    public void typeOfRelationshipSelected(TextField idTypeRelationshipTextField, TextField nameTypeRelationshipTextField, TableView<TypeOfRelationship> typeRelationshipTable) {
+        TableView.TableViewSelectionModel<TypeOfRelationship> selectionModel = typeRelationshipTable.getSelectionModel();
+        selectionModel.selectedItemProperty().addListener((observableValue, type, newType) -> {
+            if(newType != null) {
+                idTypeRelationshipTextField.setText(String.valueOf(newType.getId()));
+                nameTypeRelationshipTextField.setText(newType.getName());
             }
         });
     }

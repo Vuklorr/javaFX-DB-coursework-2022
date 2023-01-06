@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.List;
 
 public class UpdateDAO {
     Connection connection = Connections.getConnection();
@@ -69,6 +70,27 @@ public class UpdateDAO {
         }
     }
 
+    public void updateFamilyRelations(String idFirstPerson, String idSecondPerson, String idTypeOfRelationship, List<String> firstSecondOldER) {
+        final String UPDATE_FR_QUERY = "UPDATE FAMILY_RELATIONS t\n" +
+                "SET t.ID_FIRST_PERSON         = ?,\n" +
+                "    t.ID_SECOND_PERSON        = ?,\n" +
+                "    t.ID_TYPE_OF_RELATIONSHIP = ?\n" +
+                "WHERE t.ID_FIRST_PERSON = ?\n" +
+                "  AND t.ID_SECOND_PERSON = ?;";
+
+        try(PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_FR_QUERY)) {
+            preparedStatement.setInt(1, Integer.parseInt(idFirstPerson));
+            preparedStatement.setInt(2, Integer.parseInt(idSecondPerson));
+            preparedStatement.setInt(3, Integer.parseInt(idTypeOfRelationship));
+            preparedStatement.setInt(4, Integer.parseInt(firstSecondOldER.get(0)));
+            preparedStatement.setInt(5, Integer.parseInt(firstSecondOldER.get(1)));
+
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public void updatePersonalData(String id,
                                    String idAddress,
                                    String name,
@@ -99,6 +121,21 @@ public class UpdateDAO {
 
     public void updateType(String id, String name) {
         final String UPDATE_TYPE_QUERY = "UPDATE Type\n" +
+                "SET name = ?\n" +
+                "WHERE id = ?;";
+
+        try(PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_TYPE_QUERY)) {
+            preparedStatement.setString(1, name);
+            preparedStatement.setInt(2, Integer.parseInt(id));
+
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void updateTypeOfRelationship(String id, String name) {
+        final String UPDATE_TYPE_QUERY = "UPDATE Type_of_relationship\n" +
                 "SET name = ?\n" +
                 "WHERE id = ?;";
 

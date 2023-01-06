@@ -12,6 +12,8 @@ import ru.manikinos.profile.datainit.InitData;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainController {
 
@@ -194,19 +196,21 @@ public class MainController {
     @FXML
     private TextField idTypeFRTextField;
     @FXML
-    private TableView<?> typeRelationshipTable;
+    private TableView<TypeOfRelationship> typeRelationshipTable;
     @FXML
-    private TableColumn<?,?> idTypeRelationshipColumn;
+    private TableColumn<TypeOfRelationship,Integer> idTypeRelationshipColumn;
     @FXML
-    private TableColumn<?,?> nameTypeRelationshipColumn;
+    private TableColumn<TypeOfRelationship,String> nameTypeRelationshipColumn;
     @FXML
-    private TableView<?> familyRelationsTable;
+    private TableView<FamilyRelations> familyRelationsTable;
     @FXML
-    private TableColumn<?,?> idFirstFRColumn;
+    private TableColumn<FamilyRelations,Integer> idFirstFRColumn;
     @FXML
-    private TableColumn<?,?> idSecondFRColumn;
+    private TableColumn<FamilyRelations,Integer> idSecondFRColumn;
     @FXML
-    private TableColumn<?,?> idTypeFRColumn;
+    private TableColumn<FamilyRelations,Integer> idTypeFRColumn;
+
+    private final List<String> firstSecondOldFR = new ArrayList<>(2);
 
     private final InitData initData = new InitData();
     private final SelectionMode selectionMode = new SelectionMode();
@@ -248,6 +252,9 @@ public class MainController {
                 endDocumentDatePicker,
                 documentTable);
 
+        initData.initFamilyRelationsData(idFirstFRColumn, idSecondFRColumn, idTypeFRColumn, familyRelationsTable);
+        selectionMode.familyRelationsSelected(idFirstFRTextField, idSecondFRTextField, idTypeFRTextField, familyRelationsTable, firstSecondOldFR);
+
         initData.initPersonalData(idPDColumn,
                 idAddressPDColumn,
                 namePDColumn,
@@ -255,7 +262,7 @@ public class MainController {
                 surnamePDColumn,
                 phoneNumberPDColumn,
                 personalDataTable);
-        selectionMode.personalData(idPDTextField,
+        selectionMode.personalDataSelected(idPDTextField,
                 idAddressPDTextField,
                 namePDTextField,
                 patronymicPDTextField,
@@ -266,6 +273,8 @@ public class MainController {
         initData.initType(idTypeColumn, nameTypeColumn, typeTable);
         selectionMode.typeSelected(idTypeTextField, nameTypeTextField, typeTable);
 
+        initData.initTypeOfRelationship(idTypeRelationshipColumn, nameTypeRelationshipColumn, typeRelationshipTable);
+        selectionMode.typeOfRelationshipSelected(idTypeRelationshipTextField, nameTypeRelationshipTextField, typeRelationshipTable);
         //TODO init all table
     }
 
@@ -376,17 +385,20 @@ public class MainController {
 
     @FXML
     private void addFamilyRelations(ActionEvent event) {
-
+        addDAO.addFamilyRelations(idFirstFRTextField.getText(), idSecondFRTextField.getText(), idTypeFRTextField.getText());
+        initData.initFamilyRelationsData(idFirstFRColumn, idSecondFRColumn, idTypeFRColumn, familyRelationsTable);
     }
 
     @FXML
     private void deleteFamilyRelations(ActionEvent event) {
-
+        deleteDAO.deleteFamilyRelations(idFirstFRTextField.getText(), idSecondFRTextField.getText());
+        initData.initFamilyRelationsData(idFirstFRColumn, idSecondFRColumn, idTypeFRColumn, familyRelationsTable);
     }
 
     @FXML
     private void updateFamilyRelations(ActionEvent event) {
-
+        updateDAO.updateFamilyRelations(idFirstFRTextField.getText(), idSecondFRTextField.getText(), idTypeFRTextField.getText(), firstSecondOldFR);
+        initData.initFamilyRelationsData(idFirstFRColumn, idSecondFRColumn, idTypeFRColumn, familyRelationsTable);
     }
     @FXML
     private void addPersonalData(ActionEvent event) {
@@ -454,15 +466,18 @@ public class MainController {
 
     @FXML
     private void addTypeRelationship(ActionEvent event) {
-
+        addDAO.addTypeOfRelationship(idTypeRelationshipTextField.getText(), nameTypeRelationshipTextField.getText());
+        initData.initTypeOfRelationship(idTypeRelationshipColumn, nameTypeRelationshipColumn, typeRelationshipTable);
     }
 
     @FXML
     private void deleteTypeRelationship(ActionEvent event) {
-
+        deleteDAO.deleteTypeOfRelationship(idTypeRelationshipTextField.getText());
+        initData.initTypeOfRelationship(idTypeRelationshipColumn, nameTypeRelationshipColumn, typeRelationshipTable);
     }
     @FXML
     private void updateTypeRelationship(ActionEvent event) {
-
+        updateDAO.updateTypeOfRelationship(idTypeRelationshipTextField.getText(), nameTypeRelationshipTextField.getText());
+        initData.initTypeOfRelationship(idTypeRelationshipColumn, nameTypeRelationshipColumn, typeRelationshipTable);
     }
 }

@@ -2,10 +2,7 @@ package ru.manikinos.profile.dao;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import ru.manikinos.profile.entity.Address;
-import ru.manikinos.profile.entity.Document;
-import ru.manikinos.profile.entity.PersonalData;
-import ru.manikinos.profile.entity.Type;
+import ru.manikinos.profile.entity.*;
 import ru.manikinos.profile.util.Connections;
 
 import java.sql.Connection;
@@ -68,6 +65,26 @@ public class AllDataDAO {
         return documents;
     }
 
+    public ObservableList<FamilyRelations> getFRData() {
+        ObservableList<FamilyRelations> familyRelations = FXCollections.observableArrayList();
+        final String GET_FR_QUERY = "SELECT*\n" +
+                "FROM Family_relations;";
+        try(PreparedStatement preparedStatement = connection.prepareStatement(GET_FR_QUERY)){
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                int idFirstPerson = resultSet.getInt(1);
+                int idSecondPerson = resultSet.getInt(2);
+                int idTypeOfRelationship = resultSet.getInt(3);
+
+                familyRelations.add(new FamilyRelations(idFirstPerson, idSecondPerson, idTypeOfRelationship));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return familyRelations;
+    }
+
     public ObservableList<PersonalData> getPDData() {
         ObservableList<PersonalData> personalData = FXCollections.observableArrayList();
         final String GET_PD_QUERY = "SELECT*\n" +
@@ -103,6 +120,25 @@ public class AllDataDAO {
                 String name = resultSet.getString(2);
 
                 types.add(new Type(id, name));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return types;
+    }
+
+    public ObservableList<TypeOfRelationship> getTypeOfRelationshipData() {
+        ObservableList<TypeOfRelationship> types = FXCollections.observableArrayList();
+        final String GET_TYPES_QUERY = "SELECT*\n" +
+                "FROM Type_of_relationship;";
+        try(PreparedStatement preparedStatement = connection.prepareStatement(GET_TYPES_QUERY)) {
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                int id = resultSet.getInt(1);
+                String name = resultSet.getString(2);
+
+                types.add(new TypeOfRelationship(id, name));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

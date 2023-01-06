@@ -56,6 +56,20 @@ public class AddDAO {
         }
     }
 
+    public void addFamilyRelations(String idFirstPerson, String idSecondPerson, String idTypeOfRelationship) {
+        final String ADD_FR_QUERY = "INSERT INTO FAMILY_RELATIONS (id_first_person, id_second_person, id_type_of_relationship) VALUES (?, ?, ?);";
+
+        try(PreparedStatement preparedStatement = connection.prepareStatement(ADD_FR_QUERY)) {
+            preparedStatement.setInt(1, Integer.parseInt(idFirstPerson));
+            preparedStatement.setInt(2, Integer.parseInt(idSecondPerson));
+            preparedStatement.setInt(3, Integer.parseInt(idTypeOfRelationship));
+
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public void addPersonalData(String id,
                                 String idAddress,
                                 String name,
@@ -90,4 +104,17 @@ public class AddDAO {
             throw new RuntimeException(e);
         }
    }
+
+    public void addTypeOfRelationship(String id, String name)  {
+        final String ADD_TYPE_QUERY = "INSERT INTO Type_of_relationship (id, name) VALUES (?, ?);";
+
+        try(PreparedStatement preparedStatement = connection.prepareStatement(ADD_TYPE_QUERY)) {
+            preparedStatement.setInt(1, Integer.parseInt(id));
+            preparedStatement.setString(2, name);
+
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
