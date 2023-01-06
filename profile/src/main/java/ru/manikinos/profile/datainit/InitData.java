@@ -91,4 +91,22 @@ public class InitData {
 
         typeRelationshipTable.setItems(allDataDAO.getTypeOfRelationshipData());
     }
+
+    public void initWorkActivity(TableColumn<WorkActivity, Integer> idWAColumn, TableColumn<WorkActivity, String> nameCompanyWAColumn, TableColumn<WorkActivity, String> nameWAColumn, TableColumn<WorkActivity, Integer> salaryWAColumn, TableView<WorkActivity> workActivityTable) {
+        idWAColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+        nameCompanyWAColumn.setCellValueFactory(new PropertyValueFactory<>("nameCompany"));
+        nameWAColumn.setCellValueFactory(new PropertyValueFactory<>("nameWork"));
+        salaryWAColumn.setCellValueFactory(new PropertyValueFactory<>("salary"));
+
+        workActivityTable.setItems(allDataDAO.getWorkActivityData());
+    }
+
+    public void initWorkActivityPersonal(TableColumn<WorkActivityPersonal, Integer> idPersonWAPColumn, TableColumn<WorkActivityPersonal, Integer> idWorkWAPColumn, TableColumn<WorkActivityPersonal, LocalDate> dateOfHiringWAPColumn, TableColumn<WorkActivityPersonal, LocalDate> dateOfDismissalWAPColumn, TableView<WorkActivityPersonal> workActivityPersonalTable) {
+        idPersonWAPColumn.setCellValueFactory(new PropertyValueFactory<>("idPersonalData"));
+        idWorkWAPColumn.setCellValueFactory(new PropertyValueFactory<>("idWork"));
+        dateOfHiringWAPColumn.setCellValueFactory(new PropertyValueFactory<>("dateOfHiring"));
+        dateOfDismissalWAPColumn.setCellValueFactory(new PropertyValueFactory<>("dateOfDismissal"));
+
+        workActivityPersonalTable.setItems(allDataDAO.getWorkActivityPersonData());
+    }
 }

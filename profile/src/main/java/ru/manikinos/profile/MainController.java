@@ -52,10 +52,10 @@ public class MainController {
     private TableColumn<Address, String> countryAddressColumn;
 
     @FXML
-    private TableColumn<Document, LocalDate> dataEndDocumentColumn;
+    private TableColumn<Document, LocalDate> dateEndDocumentColumn;
 
     @FXML
-    private TableColumn<Document, LocalDate> dataStartDocumentColumn;
+    private TableColumn<Document, LocalDate> dateStartDocumentColumn;
     @FXML
     private Button addDocumentButton;
 
@@ -209,8 +209,58 @@ public class MainController {
     private TableColumn<FamilyRelations,Integer> idSecondFRColumn;
     @FXML
     private TableColumn<FamilyRelations,Integer> idTypeFRColumn;
+    @FXML
+    private Button addWAButton;
+    @FXML
+    private Button deleteWAButton;
+    @FXML
+    private Button updateWAButton;
+    @FXML
+    private Button addWAPButton;
+    @FXML
+    private Button deleteWAPButton;
+    @FXML
+    private Button updateWAPButton;
+    @FXML
+    private TableView<WorkActivity> workActivityTable;
+    @FXML
+    private TableColumn<WorkActivity, Integer> idWAColumn;
+    @FXML
+    private TableColumn<WorkActivity, String> nameCompanyWAColumn;
+    @FXML
+    private TableColumn<WorkActivity, String> nameWAColumn;
+    @FXML
+    private TableColumn<WorkActivity, Integer> salaryWAColumn;
+    @FXML
+    private TextField idWATextField;
+    @FXML
+    private TextField nameCompanyWATextField;
+    @FXML
+    private TextField nameWATextField;
+    @FXML
+    private TextField salaryWATextField;
+    @FXML
+    private TableView<WorkActivityPersonal> workActivityPersonalTable;
+    @FXML
+    private TableColumn<WorkActivityPersonal, Integer> idWorkWAPColumn;
+    @FXML
+    private TableColumn<WorkActivityPersonal, Integer> idPersonWAPColumn;
+    @FXML
+    private TableColumn<WorkActivityPersonal, LocalDate> dateOfHiringWAPColumn;
+    @FXML
+    private TableColumn<WorkActivityPersonal, LocalDate> dateOfDismissalWAPColumn;
+    @FXML
+    private TextField idWorkWAPTextField;
+    @FXML
+    private TextField idPersonWAPTextField;
+    @FXML
+    private DatePicker dateOfHiringWAPDatePicker;
+    @FXML
+    private DatePicker dateOfDismissalWAPDatePicker;
 
     private final List<String> firstSecondOldFR = new ArrayList<>(2);
+
+    private final List<String> personWorkOldWAP = new ArrayList<>(2);
 
     private final InitData initData = new InitData();
     private final SelectionMode selectionMode = new SelectionMode();
@@ -242,8 +292,8 @@ public class MainController {
         initData.initDocument(idDocumentColumn,
                 idTypeDocumentColumn,
                 idPDDocumentColumn,
-                dataStartDocumentColumn,
-                dataEndDocumentColumn,
+                dateStartDocumentColumn,
+                dateEndDocumentColumn,
                 documentTable);
         selectionMode.documentSelected(idDocumentTextField,
                 idTypeDocumentTextField,
@@ -275,7 +325,12 @@ public class MainController {
 
         initData.initTypeOfRelationship(idTypeRelationshipColumn, nameTypeRelationshipColumn, typeRelationshipTable);
         selectionMode.typeOfRelationshipSelected(idTypeRelationshipTextField, nameTypeRelationshipTextField, typeRelationshipTable);
-        //TODO init all table
+
+        initData.initWorkActivity(idWAColumn, nameCompanyWAColumn, nameWAColumn, salaryWAColumn, workActivityTable);
+        selectionMode.workActivitySelected(idWATextField, nameCompanyWATextField, nameWATextField, salaryWATextField, workActivityTable);
+
+        initData.initWorkActivityPersonal(idPersonWAPColumn, idWorkWAPColumn, dateOfHiringWAPColumn, dateOfDismissalWAPColumn, workActivityPersonalTable);
+        selectionMode.workActivityPersonSelected(idPersonWAPTextField, idWorkWAPTextField, dateOfHiringWAPDatePicker, dateOfDismissalWAPDatePicker, workActivityPersonalTable, personWorkOldWAP);
     }
 
     @FXML
@@ -341,8 +396,8 @@ public class MainController {
             initData.initDocument(idDocumentColumn,
                     idTypeDocumentColumn,
                     idPDDocumentColumn,
-                    dataStartDocumentColumn,
-                    dataEndDocumentColumn,
+                    dateStartDocumentColumn,
+                    dateEndDocumentColumn,
                     documentTable);
         } else {
             throw new UnsupportedOperationException("StartDate should be before EndDate");
@@ -355,8 +410,8 @@ public class MainController {
         initData.initDocument(idDocumentColumn,
                 idTypeDocumentColumn,
                 idPDDocumentColumn,
-                dataStartDocumentColumn,
-                dataEndDocumentColumn,
+                dateStartDocumentColumn,
+                dateEndDocumentColumn,
                 documentTable);
     }
 
@@ -375,8 +430,8 @@ public class MainController {
             initData.initDocument(idDocumentColumn,
                     idTypeDocumentColumn,
                     idPDDocumentColumn,
-                    dataStartDocumentColumn,
-                    dataEndDocumentColumn,
+                    dateStartDocumentColumn,
+                    dateEndDocumentColumn,
                     documentTable);
         } else {
             throw new UnsupportedOperationException("StartDate should be before EndDate");
@@ -479,5 +534,58 @@ public class MainController {
     private void updateTypeRelationship(ActionEvent event) {
         updateDAO.updateTypeOfRelationship(idTypeRelationshipTextField.getText(), nameTypeRelationshipTextField.getText());
         initData.initTypeOfRelationship(idTypeRelationshipColumn, nameTypeRelationshipColumn, typeRelationshipTable);
+    }
+
+    @FXML
+    private void addWorkActivity(ActionEvent event) {
+        addDAO.addWorkActivity(idWATextField.getText(),
+                nameCompanyWATextField.getText(),
+                nameWATextField.getText(),
+                salaryWATextField.getText());
+        initData.initWorkActivity(idWAColumn, nameCompanyWAColumn, nameWAColumn, salaryWAColumn,workActivityTable);
+    }
+
+    @FXML
+    private void deleteWorkActivity(ActionEvent event) {
+        deleteDAO.deleteWorkActivity(idWATextField.getText());
+        initData.initWorkActivity(idWAColumn, nameCompanyWAColumn, nameWAColumn, salaryWAColumn,workActivityTable);
+    }
+
+    @FXML
+    private void updateWorkActivity(ActionEvent event) {
+        updateDAO.updateWorkActivity(idWATextField.getText(),
+                nameCompanyWATextField.getText(),
+                nameWATextField.getText(),
+                salaryWATextField.getText());
+        initData.initWorkActivity(idWAColumn, nameCompanyWAColumn, nameWAColumn, salaryWAColumn,workActivityTable);
+    }
+
+    @FXML
+    private void addWorkActivityPersonal(ActionEvent event) {
+        if(dateOfHiringWAPDatePicker.getValue().isBefore(dateOfDismissalWAPDatePicker.getValue())) {
+            addDAO.addWorkActivityPersonal(idPersonWAPTextField.getText(),
+                    idWorkWAPTextField.getText(),
+                    dateOfHiringWAPDatePicker.getValue().toString(),
+                    dateOfDismissalWAPDatePicker.getValue().toString());
+            initData.initWorkActivityPersonal(idPersonWAPColumn, idWorkWAPColumn, dateOfHiringWAPColumn, dateOfDismissalWAPColumn, workActivityPersonalTable);
+        } else {
+            throw new UnsupportedOperationException("Date of hiring should be before Date of dismissal");
+        }
+    }
+
+    @FXML
+    private void deleteWorkActivityPersonal(ActionEvent event) {
+        deleteDAO.deleteWorkActivityPerson(idPersonWAPTextField.getText(), idWorkWAPTextField.getText());
+        initData.initWorkActivityPersonal(idPersonWAPColumn, idWorkWAPColumn, dateOfHiringWAPColumn, dateOfDismissalWAPColumn, workActivityPersonalTable);
+    }
+
+    @FXML
+    private void updateWorkActivityPersonal(ActionEvent event) {
+        updateDAO.updateWorkActivityPersonal(idPersonWAPTextField.getText(),
+                idWorkWAPTextField.getText(),
+                dateOfHiringWAPDatePicker.getValue().toString(),
+                dateOfDismissalWAPDatePicker.getValue().toString(),
+                personWorkOldWAP);
+        initData.initWorkActivityPersonal(idPersonWAPColumn, idWorkWAPColumn, dateOfHiringWAPColumn, dateOfDismissalWAPColumn, workActivityPersonalTable);
     }
 }

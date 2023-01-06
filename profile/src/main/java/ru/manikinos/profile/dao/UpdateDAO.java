@@ -30,7 +30,7 @@ public class UpdateDAO {
                 "    flat = ?\n" +
                 "WHERE id = ?;";
 
-        try(PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_ADDRESS_QUERY)) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_ADDRESS_QUERY)) {
             preparedStatement.setString(1, country);
             preparedStatement.setString(2, city);
             preparedStatement.setString(3, region);
@@ -57,7 +57,7 @@ public class UpdateDAO {
                 "    end_date = ?\n" +
                 "WHERE id = ?;";
 
-        try(PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_DOCUMENT_QUERY)) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_DOCUMENT_QUERY)) {
             preparedStatement.setInt(1, Integer.parseInt(idType));
             preparedStatement.setInt(2, Integer.parseInt(idPersonalData));
             preparedStatement.setDate(3, Date.valueOf(startDate));
@@ -78,7 +78,7 @@ public class UpdateDAO {
                 "WHERE t.ID_FIRST_PERSON = ?\n" +
                 "  AND t.ID_SECOND_PERSON = ?;";
 
-        try(PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_FR_QUERY)) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_FR_QUERY)) {
             preparedStatement.setInt(1, Integer.parseInt(idFirstPerson));
             preparedStatement.setInt(2, Integer.parseInt(idSecondPerson));
             preparedStatement.setInt(3, Integer.parseInt(idTypeOfRelationship));
@@ -98,14 +98,14 @@ public class UpdateDAO {
                                    String surname,
                                    String phoneNumber) {
         final String UPDATE_PD_QUERY = "UPDATE Personal_data\n" +
-                                       "SET id_address = ?,\n" +
-                                       "    name = ?,\n" +
-                                       "    patronymic = ?,\n" +
-                                       "    surname = ?,\n" +
-                                       "    phone_number = ?\n" +
-                                       "WHERE id = ?;";
+                "SET id_address = ?,\n" +
+                "    name = ?,\n" +
+                "    patronymic = ?,\n" +
+                "    surname = ?,\n" +
+                "    phone_number = ?\n" +
+                "WHERE id = ?;";
 
-        try(PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_PD_QUERY)) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_PD_QUERY)) {
             preparedStatement.setInt(1, Integer.parseInt(idAddress));
             preparedStatement.setString(2, name);
             preparedStatement.setString(3, patronymic);
@@ -124,7 +124,7 @@ public class UpdateDAO {
                 "SET name = ?\n" +
                 "WHERE id = ?;";
 
-        try(PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_TYPE_QUERY)) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_TYPE_QUERY)) {
             preparedStatement.setString(1, name);
             preparedStatement.setInt(2, Integer.parseInt(id));
 
@@ -139,9 +139,54 @@ public class UpdateDAO {
                 "SET name = ?\n" +
                 "WHERE id = ?;";
 
-        try(PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_TYPE_QUERY)) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_TYPE_QUERY)) {
             preparedStatement.setString(1, name);
             preparedStatement.setInt(2, Integer.parseInt(id));
+
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void updateWorkActivity(String id,
+                                   String nameCompany,
+                                   String nameWork,
+                                   String salary) {
+        final String UPDATE_WA_QUERY = "UPDATE Work_activity\n" +
+                "SET name_company = ?,\n" +
+                "    name_work = ?,\n" +
+                "    salary = ?\n" +
+                "WHERE id = ?;";
+
+        try(PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_WA_QUERY)) {
+            preparedStatement.setString(1, nameCompany);
+            preparedStatement.setString(2, nameWork);
+            preparedStatement.setInt(3, Integer.parseInt(salary));
+            preparedStatement.setInt(4, Integer.parseInt(id));
+
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void updateWorkActivityPersonal(String idPerson, String idWork, String dateOfHiring, String dateOfDismissal, List<String> personWorkOldWAP) {
+        final String UPDATE_WAP_QUERY = "UPDATE work_activity_personal\n" +
+                "SET id_personal_data = ?,\n" +
+                "    id_work = ?,\n" +
+                "    date_of_hiring = ?,\n" +
+                "    date_of_dismissal = ?\n" +
+                "WHERE id_personal_data = ?\n" +
+                "  AND id_work = ?;";
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_WAP_QUERY)) {
+            preparedStatement.setInt(1, Integer.parseInt(idPerson));
+            preparedStatement.setInt(2, Integer.parseInt(idWork));
+            preparedStatement.setDate(3, Date.valueOf(dateOfHiring));
+            preparedStatement.setDate(4, Date.valueOf(dateOfDismissal));
+            preparedStatement.setInt(5, Integer.parseInt(personWorkOldWAP.get(0)));
+            preparedStatement.setInt(6, Integer.parseInt(personWorkOldWAP.get(1)));
 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {

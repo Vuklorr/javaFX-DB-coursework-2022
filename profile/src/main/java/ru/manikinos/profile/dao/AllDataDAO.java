@@ -145,4 +145,46 @@ public class AllDataDAO {
         }
         return types;
     }
+
+    public ObservableList<WorkActivity> getWorkActivityData() {
+        ObservableList<WorkActivity> workActivities = FXCollections.observableArrayList();
+        final String GET_WA_QUERY = "SELECT*\n" +
+                "FROM Work_activity;";
+        try(PreparedStatement preparedStatement = connection.prepareStatement(GET_WA_QUERY)) {
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                int id = resultSet.getInt(1);
+                String nameCompany = resultSet.getString(2);
+                String nameWork = resultSet.getString(3);
+                int salary = resultSet.getInt(4);
+
+                workActivities.add(new WorkActivity(id, nameCompany, nameWork, salary));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return workActivities;
+    }
+
+    public ObservableList<WorkActivityPersonal> getWorkActivityPersonData() {
+        ObservableList<WorkActivityPersonal> workActivityPersonals = FXCollections.observableArrayList();
+        final String GET_WAP_QUERY = "SELECT*\n" +
+                "FROM Work_activity_personal;";
+        try(PreparedStatement preparedStatement = connection.prepareStatement(GET_WAP_QUERY)) {
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                int idPersonal = resultSet.getInt(1);
+                int idWork = resultSet.getInt(2);
+                LocalDate dateOfHiring = LocalDate.parse(resultSet.getString(3));
+                LocalDate dateOfDismissal = LocalDate.parse(resultSet.getString(4));
+
+                workActivityPersonals.add(new WorkActivityPersonal(idPersonal, idWork, dateOfHiring, dateOfDismissal));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return workActivityPersonals;
+    }
 }

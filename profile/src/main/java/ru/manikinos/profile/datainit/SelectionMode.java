@@ -103,4 +103,33 @@ public class SelectionMode {
             }
         });
     }
+
+    public void workActivitySelected(TextField idWATextField, TextField nameCompanyWATextField, TextField nameWATextField, TextField salaryWATextField, TableView<WorkActivity> workActivityTable) {
+        TableView.TableViewSelectionModel<WorkActivity> selectionModel = workActivityTable.getSelectionModel();
+        selectionModel.selectedItemProperty().addListener((observableValue, workActivity, newWA) -> {
+            if(newWA != null) {
+                idWATextField.setText(String.valueOf(newWA.getId()));
+                nameCompanyWATextField.setText(newWA.getNameCompany());
+                nameWATextField.setText(newWA.getNameWork());
+                salaryWATextField.setText(String.valueOf(newWA.getSalary()));
+            }
+        });
+    }
+
+    public void workActivityPersonSelected(TextField idPersonWAPTextField, TextField idWorkWAPTextField, DatePicker dateOfHiringWAPDatePicker, DatePicker dateOfDismissalWAPDatePicker, TableView<WorkActivityPersonal> workActivityPersonalTable, List<String> personWorkOldWAP) {
+        TableView.TableViewSelectionModel<WorkActivityPersonal> selectionModel = workActivityPersonalTable.getSelectionModel();
+        selectionModel.selectedItemProperty().addListener((observableValue, workActivityPersonal, newWAP) -> {
+            if(newWAP != null) {
+                personWorkOldWAP.clear();
+
+                idPersonWAPTextField.setText(String.valueOf(newWAP.getIdPersonalData()));
+                idWorkWAPTextField.setText(String.valueOf(newWAP.getIdWork()));
+                dateOfHiringWAPDatePicker.setValue(newWAP.getDateOfHiring());
+                dateOfDismissalWAPDatePicker.setValue(newWAP.getDateOfDismissal());
+
+                personWorkOldWAP.add(idPersonWAPTextField.getText());
+                personWorkOldWAP.add(idWorkWAPTextField.getText());
+            }
+        });
+    }
 }

@@ -117,4 +117,35 @@ public class AddDAO {
             throw new RuntimeException(e);
         }
     }
+
+    public void addWorkActivity(String id, String nameCompany, String nameWork, String salary)  {
+        final String ADD_WA_QUERY = "INSERT INTO Work_activity (id, name_company, name_work, salary) VALUES (?, ?, ?, ?);";
+
+        try(PreparedStatement preparedStatement = connection.prepareStatement(ADD_WA_QUERY)) {
+            preparedStatement.setInt(1, Integer.parseInt(id));
+            preparedStatement.setString(2, nameCompany);
+            preparedStatement.setString(3, nameWork);
+            preparedStatement.setInt(4, Integer.parseInt(salary));
+
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void addWorkActivityPersonal(String idPerson, String idWork, String dateOfHiring, String dateOfDismissal)  {
+        final String ADD_WAP_QUERY = "INSERT INTO Work_activity_personal (id_personal_data, id_work, date_of_hiring, date_of_dismissal) VALUES (?, ?, ?, ?);";
+
+        try(PreparedStatement preparedStatement = connection.prepareStatement(ADD_WAP_QUERY)) {
+            preparedStatement.setInt(1, Integer.parseInt(idPerson));
+            preparedStatement.setInt(2, Integer.parseInt(idWork));
+            preparedStatement.setDate(3, Date.valueOf(dateOfHiring));
+            preparedStatement.setDate(4, Date.valueOf(dateOfDismissal));
+
+
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

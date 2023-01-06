@@ -26,14 +26,7 @@ public class DeleteDAO {
     public void deleteFamilyRelations(String idFirstPerson, String idSecondPerson) {
         final String DELETE_FR_QUERY = "DELETE FROM Family_relations WHERE id_first_person = ? AND id_second_person = ?;";
 
-        try(PreparedStatement preparedStatement = connection.prepareStatement(DELETE_FR_QUERY)) {
-            preparedStatement.setInt(1, Integer.parseInt(idFirstPerson));
-            preparedStatement.setInt(2, Integer.parseInt(idSecondPerson));
-
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        delete(DELETE_FR_QUERY, Integer.parseInt(idFirstPerson), Integer.parseInt(idSecondPerson));
     }
 
     public void deletePersonalData(String id) {
@@ -52,9 +45,31 @@ public class DeleteDAO {
         delete(DELETE_TYPE_QUERY, Integer.parseInt(id));
     }
 
+    public void deleteWorkActivity(String id) {
+        final String DELETE_WA_QUERY = "DELETE FROM Work_activity WHERE id = ?;";
+        delete(DELETE_WA_QUERY, Integer.parseInt(id));
+    }
+
+    public void deleteWorkActivityPerson(String idPerson, String idWork) {
+        final String DELETE_WAP_QUERY = "DELETE FROM Work_activity_personal WHERE id_personal_data = ? AND id_work = ?;";
+
+        delete(DELETE_WAP_QUERY, Integer.parseInt(idPerson), Integer.parseInt(idWork));
+    }
+
     private void delete(final String QUERY, final int id) {
         try(PreparedStatement preparedStatement = connection.prepareStatement(QUERY)) {
             preparedStatement.setInt(1, id);
+
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void delete(final String QUERY, final int idFirst, final int idSecond) {
+        try(PreparedStatement preparedStatement = connection.prepareStatement(QUERY)) {
+            preparedStatement.setInt(1, idFirst);
+            preparedStatement.setInt(2, idSecond);
 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {

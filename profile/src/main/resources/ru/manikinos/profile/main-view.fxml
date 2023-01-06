@@ -64,8 +64,8 @@
                       <TableColumn fx:id="idDocumentColumn" prefWidth="50.0" text="id" />
                       <TableColumn fx:id="idTypeDocumentColumn" prefWidth="70.0" text="id типа" />
                         <TableColumn fx:id="idPDDocumentColumn" prefWidth="105.0" text="id личных данных" />
-                        <TableColumn fx:id="dataStartDocumentColumn" minWidth="0.0" prefWidth="154.0" text="Дата начала действия" />
-                        <TableColumn fx:id="dataEndDocumentColumn" prefWidth="165.0" text="Дата конца действия" />
+                        <TableColumn fx:id="dateStartDocumentColumn" minWidth="0.0" prefWidth="154.0" text="Дата начала действия" />
+                        <TableColumn fx:id="dateEndDocumentColumn" prefWidth="165.0" text="Дата конца действия" />
                     </columns>
                   </TableView>
                   <AnchorPane layoutX="14.0" layoutY="292.0" prefHeight="200.0" prefWidth="525.0">
@@ -191,7 +191,7 @@
                <children>
                   <Button fx:id="deleteWAButton" layoutX="359.0" layoutY="442.0" mnemonicParsing="false" onAction="#deleteWorkActivity" prefHeight="26.0" prefWidth="109.0" text="Удалить" />
                   <Button fx:id="addWAButton" layoutX="359.0" layoutY="363.0" mnemonicParsing="false" onAction="#addWorkActivity" prefHeight="24.0" prefWidth="109.0" text="Добавить" />
-                  <Button fx:id="addWAPButton" layoutX="809.0" layoutY="363.0" mnemonicParsing="false" onAction="#addWorkActivityPerson" prefHeight="26.0" prefWidth="82.0" text="Добавить" />
+                  <Button fx:id="addWAPButton" layoutX="809.0" layoutY="363.0" mnemonicParsing="false" onAction="#addWorkActivityPersonal" prefHeight="26.0" prefWidth="82.0" text="Добавить" />
                   <Button fx:id="updateWAButton" layoutX="359.0" layoutY="403.0" mnemonicParsing="false" onAction="#updateWorkActivity" prefHeight="26.0" prefWidth="110.0" text="Изменить" />
                   <Text layoutX="220.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Работа" wrappingWidth="47.433990478515625" />
                   <TableView fx:id="workActivityTable" layoutX="23.0" layoutY="31.0" prefHeight="322.0" prefWidth="446.0">
@@ -210,12 +210,12 @@
                   <Text layoutX="18.0" layoutY="420.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Название компании" />
                   <Text layoutX="18.0" layoutY="460.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Должность" />
                   <Text layoutX="18.0" layoutY="497.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ставка" />
-                  <TableView fx:id="workActivityPesonalTable" layoutX="490.0" layoutY="31.0" prefHeight="322.0" prefWidth="402.0">
+                  <TableView fx:id="workActivityPersonalTable" layoutX="490.0" layoutY="31.0" prefHeight="322.0" prefWidth="402.0">
                     <columns>
                       <TableColumn fx:id="idWorkWAPColumn" prefWidth="71.20001220703125" text="Id работы" />
                       <TableColumn fx:id="idPersonWAPColumn" prefWidth="88.0" text="id работника" />
-                        <TableColumn fx:id="dataOfHiringWAPColumn" prefWidth="107.20001220703125" text="Дата приема" />
-                        <TableColumn fx:id="dataOfDissmisal" prefWidth="124.800048828125" text="Дата увольнения" />
+                        <TableColumn fx:id="dateOfHiringWAPColumn" prefWidth="107.20001220703125" text="Дата приема" />
+                        <TableColumn fx:id="dateOfDismissalWAPColumn" prefWidth="124.800048828125" text="Дата увольнения" />
                     </columns>
                   </TableView>
                   <Text layoutX="661.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Трудовая деятельность" />
@@ -227,8 +227,8 @@
                   <Text layoutX="490.0" layoutY="497.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Дата увольнения" />
                   <DatePicker fx:id="dateOfHiringWAPDatePicker" layoutX="598.0" layoutY="443.0" prefHeight="26.0" prefWidth="192.0" promptText="Выберите дату приема" />
                   <DatePicker fx:id="dateOfDismissalWAPDatePicker" layoutX="598.0" layoutY="480.0" prefHeight="26.0" prefWidth="193.0" promptText="Выберите дату увольнения" />
-                  <Button fx:id="updateWorkActivityPersonButton" layoutX="809.0" layoutY="403.0" mnemonicParsing="false" onAction="#updateWorkActivityPerson" prefHeight="26.0" prefWidth="82.0" text="Изменить" />
-                  <Button fx:id="deleteWorkActivityPersonButton" layoutX="809.0" layoutY="443.0" mnemonicParsing="false" onAction="#deleteWorkActivityPerson" prefHeight="26.0" prefWidth="83.0" text="Удалить" />
+                  <Button fx:id="updateWAPButton" layoutX="809.0" layoutY="403.0" mnemonicParsing="false" onAction="#updateWorkActivityPersonal" prefHeight="26.0" prefWidth="82.0" text="Изменить" />
+                  <Button fx:id="deleteWAPButton" layoutX="809.0" layoutY="443.0" mnemonicParsing="false" onAction="#deleteWorkActivityPersonal" prefHeight="26.0" prefWidth="83.0" text="Удалить" />
                </children>
             </AnchorPane>
          </content>
