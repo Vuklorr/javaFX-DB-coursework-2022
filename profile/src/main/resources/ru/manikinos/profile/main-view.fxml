@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="547.0" prefWidth="901.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.manikinos.profile.MainController">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="547.0" prefWidth="901.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.manikinos.profile.MainController">
   <tabs>
     <Tab text="Запросы">
       <content>
@@ -22,33 +22,33 @@
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <TableView fx:id="personalDataTable" layoutX="14.0" layoutY="31.0" prefHeight="200.0" prefWidth="743.0">
+                  <TableView fx:id="personalDataTable" layoutX="14.0" layoutY="31.0" prefHeight="200.0" prefWidth="876.0">
                     <columns>
                       <TableColumn fx:id="idPDColumn" prefWidth="28.0" text="id" />
-                      <TableColumn fx:id="idAddressPDColumn" prefWidth="86.0" text="id адреса" />
-                        <TableColumn fx:id="namePDColumn" prefWidth="125.0" text="Имя" />
-                        <TableColumn fx:id="patronymicPDColumn" prefWidth="148.0" text="Отчество" />
-                        <TableColumn fx:id="surnamePDColumn" prefWidth="150.0" text="Фамилия" />
-                        <TableColumn fx:id="phoneNumberPDColumn" prefWidth="198.0" text="Номер телефона" />
+                      <TableColumn fx:id="idAddressPDColumn" prefWidth="107.20000839233398" text="id адреса" />
+                        <TableColumn fx:id="namePDColumn" prefWidth="131.1999969482422" text="Имя" />
+                        <TableColumn fx:id="patronymicPDColumn" prefWidth="156.00006103515625" text="Отчество" />
+                        <TableColumn fx:id="surnamePDColumn" prefWidth="202.39996337890625" text="Фамилия" />
+                        <TableColumn fx:id="phoneNumberPDColumn" prefWidth="241.60003662109375" text="Номер телефона" />
                     </columns>
                   </TableView>
-                  <AnchorPane layoutX="14.0" layoutY="246.0" prefHeight="258.0" prefWidth="738.0">
+                  <AnchorPane layoutX="14.0" layoutY="246.0" prefHeight="258.0" prefWidth="878.0">
                      <children>
                         <TextField fx:id="idPDTextField" layoutX="137.0" layoutY="14.0" prefHeight="24.0" prefWidth="212.0" promptText="Введите id" />
-                        <Button fx:id="deletePDButton" layoutX="391.0" layoutY="150.0" mnemonicParsing="false" onAction="#deletePersonalData" prefHeight="24.0" prefWidth="111.0" text="Удалить" />
-                        <Button fx:id="addPDButton" layoutX="615.0" layoutY="150.0" mnemonicParsing="false" onAction="#addPersonalData" prefHeight="24.0" prefWidth="108.0" text="Добавить" />
-                        <Button fx:id="updatePDButton" layoutX="510.0" layoutY="150.0" mnemonicParsing="false" onAction="#updatePersonalData" prefHeight="24.0" prefWidth="98.0" text="Изменить" />
+                        <Button fx:id="deletePDButton" layoutX="512.0" layoutY="148.0" mnemonicParsing="false" onAction="#deletePersonalData" prefHeight="24.0" prefWidth="111.0" text="Удалить" />
+                        <Button fx:id="addPDButton" layoutX="736.0" layoutY="148.0" mnemonicParsing="false" onAction="#addPersonalData" prefHeight="24.0" prefWidth="108.0" text="Добавить" />
+                        <Button fx:id="updatePDButton" layoutX="631.0" layoutY="148.0" mnemonicParsing="false" onAction="#updatePersonalData" prefHeight="24.0" prefWidth="98.0" text="Изменить" />
                         <TextField fx:id="idAddressPDTextField" layoutX="137.0" layoutY="61.0" prefHeight="24.0" prefWidth="211.0" promptText="Введите id адреса" />
                         <Text layoutX="14.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID" />
                         <Text layoutX="13.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID адреса" />
                         <TextField fx:id="namePDTextField" layoutX="138.0" layoutY="105.0" prefHeight="24.0" prefWidth="211.0" promptText="Введите имя" />
-                        <TextField fx:id="patronymicPDTextField" layoutX="495.0" layoutY="16.0" prefHeight="24.0" prefWidth="230.0" promptText="Введите отчество" />
-                        <TextField fx:id="surnamePDTextField" layoutX="494.0" layoutY="60.0" prefHeight="24.0" prefWidth="232.0" promptText="Введите фамилию" />
-                        <TextField fx:id="phoneNumberPDTextField" layoutX="496.0" layoutY="106.0" prefHeight="24.0" prefWidth="227.0" promptText="Введите номер телефона" />
+                        <TextField fx:id="patronymicPDTextField" layoutX="535.0" layoutY="14.0" prefHeight="26.0" prefWidth="311.0" promptText="Введите отчество" />
+                        <TextField fx:id="surnamePDTextField" layoutX="539.0" layoutY="58.0" prefHeight="26.0" prefWidth="308.0" promptText="Введите фамилию" />
+                        <TextField fx:id="phoneNumberPDTextField" layoutX="543.0" layoutY="104.0" prefHeight="26.0" prefWidth="301.0" promptText="Введите номер телефона" />
                         <Text layoutX="13.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Имя" />
-                        <Text layoutX="369.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Отчество" />
-                        <Text layoutX="369.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Фамилия" />
-                        <Text layoutX="369.0" layoutY="123.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Номер телефона" />
+                        <Text layoutX="425.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Отчество" />
+                        <Text layoutX="425.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Фамилия" />
+                        <Text layoutX="425.0" layoutY="123.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Номер телефона" />
                      </children>
                   </AnchorPane>
                </children>
@@ -110,36 +110,36 @@
          <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <TableView fx:id="addressTable" layoutX="11.0" layoutY="14.0" prefHeight="259.0" prefWidth="740.0">
+                  <TableView fx:id="addressTable" layoutX="11.0" layoutY="14.0" prefHeight="259.0" prefWidth="873.0">
                      <columns>
                         <TableColumn fx:id="idAddressColumn" prefWidth="31.0" text="id" />
-                        <TableColumn fx:id="countryAddressColumn" prefWidth="109.0" text="Страна" />
-                        <TableColumn fx:id="cityAddressColumn" prefWidth="107.0" text="Город" />
-                        <TableColumn fx:id="regionAddressColumn" minWidth="0.0" prefWidth="174.0" text="Район" />
-                        <TableColumn fx:id="streetAddressColumn" prefWidth="169.0" text="Улица" />
-                        <TableColumn fx:id="houseAddressColumn" prefWidth="56.0" text="Дом" />
-                        <TableColumn fx:id="flatAddressColumn" prefWidth="92.0" text="Квартира" />
+                        <TableColumn fx:id="countryAddressColumn" prefWidth="112.79998397827148" text="Страна" />
+                        <TableColumn fx:id="cityAddressColumn" prefWidth="152.80003356933594" text="Город" />
+                        <TableColumn fx:id="regionAddressColumn" minWidth="0.0" prefWidth="166.39996337890625" text="Район" />
+                        <TableColumn fx:id="streetAddressColumn" prefWidth="164.79998779296875" text="Улица" />
+                        <TableColumn fx:id="houseAddressColumn" prefWidth="107.199951171875" text="Дом" />
+                        <TableColumn fx:id="flatAddressColumn" prefWidth="124.7999267578125" text="Квартира" />
                      </columns>
                   </TableView>
-                  <AnchorPane layoutX="12.0" layoutY="281.0" prefHeight="221.0" prefWidth="739.0">
+                  <AnchorPane layoutX="12.0" layoutY="281.0" prefHeight="222.0" prefWidth="875.0">
                      <children>
-                        <TextField fx:id="houseAddressTextField" layoutX="415.0" layoutY="72.0" prefHeight="24.0" prefWidth="245.0" promptText="Введите дом" />
-                        <TextField fx:id="idAddressTextField" layoutX="80.0" layoutY="24.0" prefHeight="24.0" prefWidth="215.0" promptText="Введите id" />
-                        <TextField fx:id="streetAddressTextField" layoutX="415.0" layoutY="24.0" prefHeight="24.0" prefWidth="246.0" promptText="Введите улицу" />
-                        <TextField fx:id="countryAddressTextField" layoutX="80.0" layoutY="72.0" prefHeight="24.0" prefWidth="212.0" promptText="Введите страну" />
-                        <TextField fx:id="flatAddressTextField" layoutX="415.0" layoutY="123.0" prefHeight="24.0" prefWidth="248.0" promptText="Введите квартиру" />
-                        <TextField fx:id="cityAddressTextField" layoutX="80.0" layoutY="123.0" prefHeight="24.0" prefWidth="212.0" promptText="Введите город" />
-                        <TextField fx:id="regionAddressTextField" layoutX="80.0" layoutY="170.0" prefHeight="24.0" prefWidth="211.0" promptText="Введите район" />
-                        <Button fx:id="addAddressButton" layoutX="554.0" layoutY="169.0" mnemonicParsing="false" onAction="#addAddress" prefHeight="24.0" prefWidth="109.0" text="Добавить" />
-                        <Button fx:id="updateAddressButton" layoutX="436.0" layoutY="169.0" mnemonicParsing="false" onAction="#updateAddress" prefHeight="24.0" prefWidth="106.0" text="Изменить" />
-                        <Button fx:id="deleteAddressButton" layoutX="332.0" layoutY="169.0" mnemonicParsing="false" onAction="#deleteAddress" prefHeight="24.0" prefWidth="94.0" text="Удалить" />
+                        <TextField fx:id="houseAddressTextField" layoutX="501.0" layoutY="74.0" prefHeight="26.0" prefWidth="322.0" promptText="Введите дом" />
+                        <TextField fx:id="idAddressTextField" layoutX="80.0" layoutY="24.0" prefHeight="26.0" prefWidth="263.0" promptText="Введите id" />
+                        <TextField fx:id="streetAddressTextField" layoutX="501.0" layoutY="26.0" prefHeight="26.0" prefWidth="322.0" promptText="Введите улицу" />
+                        <TextField fx:id="countryAddressTextField" layoutX="80.0" layoutY="72.0" prefHeight="26.0" prefWidth="259.0" promptText="Введите страну" />
+                        <TextField fx:id="flatAddressTextField" layoutX="501.0" layoutY="125.0" prefHeight="26.0" prefWidth="322.0" promptText="Введите квартиру" />
+                        <TextField fx:id="cityAddressTextField" layoutX="80.0" layoutY="123.0" prefHeight="26.0" prefWidth="261.0" promptText="Введите город" />
+                        <TextField fx:id="regionAddressTextField" layoutX="80.0" layoutY="170.0" prefHeight="26.0" prefWidth="262.0" promptText="Введите район" />
+                        <Button fx:id="addAddressButton" layoutX="713.0" layoutY="170.0" mnemonicParsing="false" onAction="#addAddress" prefHeight="24.0" prefWidth="109.0" text="Добавить" />
+                        <Button fx:id="updateAddressButton" layoutX="595.0" layoutY="170.0" mnemonicParsing="false" onAction="#updateAddress" prefHeight="24.0" prefWidth="106.0" text="Изменить" />
+                        <Button fx:id="deleteAddressButton" layoutX="491.0" layoutY="170.0" mnemonicParsing="false" onAction="#deleteAddress" prefHeight="24.0" prefWidth="94.0" text="Удалить" />
                         <Text layoutX="14.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID" />
                         <Text layoutX="12.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Страна" />
                         <Text layoutX="13.0" layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Город" />
                         <Text layoutX="13.0" layoutY="186.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Район" />
-                        <Text layoutX="335.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Улица" />
-                        <Text layoutX="335.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Дом" />
-                        <Text layoutX="335.0" layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Квартира" />
+                        <Text layoutX="421.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Улица" />
+                        <Text layoutX="421.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Дом" />
+                        <Text layoutX="421.0" layoutY="142.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Квартира" />
                      </children>
                   </AnchorPane>
                </children>
@@ -189,20 +189,46 @@
          <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <TableView fx:id="waTable" layoutX="14.0" layoutY="30.0" prefHeight="200.0" prefWidth="694.0">
-                     <columns>
-                        <TableColumn fx:id="idWAColumn" prefWidth="41.0" text="id" />
-                        <TableColumn fx:id="nameWAColumn" prefWidth="140.0" text="Название работы" />
-                        <TableColumn fx:id="salaryWAColumn" prefWidth="62.0" text="Ставка" />
-                        <TableColumn fx:id="hoursWorkedWAColumn" minWidth="0.0" prefWidth="159.0" text="Отработанные часы" />
-                        <TableColumn fx:id="dateOfHiringWAColumn" prefWidth="142.0" text="Дата наема" />
-                        <TableColumn fx:id="dateOfDismissalWAColumn" prefWidth="149.0" text="Дата увольнения" />
-                     </columns>
+                  <Button fx:id="deleteWAButton" layoutX="359.0" layoutY="442.0" mnemonicParsing="false" onAction="#deleteWorkActivity" prefHeight="26.0" prefWidth="109.0" text="Удалить" />
+                  <Button fx:id="addWAButton" layoutX="359.0" layoutY="363.0" mnemonicParsing="false" onAction="#addWorkActivity" prefHeight="24.0" prefWidth="109.0" text="Добавить" />
+                  <Button fx:id="addWAPButton" layoutX="809.0" layoutY="363.0" mnemonicParsing="false" onAction="#addWorkActivityPerson" prefHeight="26.0" prefWidth="82.0" text="Добавить" />
+                  <Button fx:id="updateWAButton" layoutX="359.0" layoutY="403.0" mnemonicParsing="false" onAction="#updateWorkActivity" prefHeight="26.0" prefWidth="110.0" text="Изменить" />
+                  <Text layoutX="220.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Работа" wrappingWidth="47.433990478515625" />
+                  <TableView fx:id="workActivityTable" layoutX="23.0" layoutY="31.0" prefHeight="322.0" prefWidth="446.0">
+                    <columns>
+                      <TableColumn fx:id="idWAColumn" prefWidth="75.0" text="Id" />
+                      <TableColumn fx:id="nameCompanyWAColumn" prefWidth="145.60003662109375" text="Название компании" />
+                        <TableColumn fx:id="nameWAColumn" prefWidth="122.40003967285156" text="Должность" />
+                        <TableColumn fx:id="salaryWAColumn" prefWidth="84.7999267578125" text="Ставка" />
+                    </columns>
                   </TableView>
-                  <Button fx:id="waDeleteButton" layoutX="495.0" layoutY="247.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="88.0" text="Удалить" />
-                  <Button fx:id="waAddButton" layoutX="599.0" layoutY="247.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="109.0" text="Добавить" />
-                  <Button fx:id="waCancelButton" layoutX="496.0" layoutY="292.0" mnemonicParsing="false" text="Отменить" />
-                  <Button fx:id="waAcceptButton" layoutX="599.0" layoutY="292.0" mnemonicParsing="false" text="Подтвердить" />
+                  <TextField fx:id="idWATextField" layoutX="153.0" layoutY="363.0" prefHeight="26.0" prefWidth="181.0" promptText="Введите id" />
+                  <TextField fx:id="nameCompanyWATextField" layoutX="154.0" layoutY="403.0" prefHeight="26.0" prefWidth="179.0" promptText="Введите название компании" />
+                  <TextField fx:id="nameWATextField" layoutX="155.0" layoutY="443.0" prefHeight="26.0" prefWidth="180.0" promptText="Введите должность" />
+                  <TextField fx:id="salaryWATextField" layoutX="154.0" layoutY="480.0" prefHeight="26.0" prefWidth="181.0" promptText="Введите ставку" />
+                  <Text layoutX="23.0" layoutY="380.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID" />
+                  <Text layoutX="18.0" layoutY="420.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Название компании" />
+                  <Text layoutX="18.0" layoutY="460.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Должность" />
+                  <Text layoutX="18.0" layoutY="497.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ставка" />
+                  <TableView fx:id="workActivityPesonalTable" layoutX="490.0" layoutY="31.0" prefHeight="322.0" prefWidth="402.0">
+                    <columns>
+                      <TableColumn fx:id="idWorkWAPColumn" prefWidth="71.20001220703125" text="Id работы" />
+                      <TableColumn fx:id="idPersonWAPColumn" prefWidth="88.0" text="id работника" />
+                        <TableColumn fx:id="dataOfHiringWAPColumn" prefWidth="107.20001220703125" text="Дата приема" />
+                        <TableColumn fx:id="dataOfDissmisal" prefWidth="124.800048828125" text="Дата увольнения" />
+                    </columns>
+                  </TableView>
+                  <Text layoutX="661.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Трудовая деятельность" />
+                  <TextField fx:id="idWorkWAPTextField" layoutX="600.0" layoutY="364.0" prefHeight="26.0" prefWidth="190.0" promptText="Введите id работы" />
+                  <TextField fx:id="idPersonWAPTextField" layoutX="598.0" layoutY="403.0" prefHeight="26.0" prefWidth="193.0" promptText="Введите id работника" />
+                  <Text layoutX="490.0" layoutY="380.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID работы" />
+                  <Text layoutX="490.0" layoutY="420.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID работника" />
+                  <Text layoutX="490.0" layoutY="461.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Дата приема" />
+                  <Text layoutX="490.0" layoutY="497.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Дата увольнения" />
+                  <DatePicker fx:id="dateOfHiringWAPDatePicker" layoutX="598.0" layoutY="443.0" prefHeight="26.0" prefWidth="192.0" promptText="Выберите дату приема" />
+                  <DatePicker fx:id="dateOfDismissalWAPDatePicker" layoutX="598.0" layoutY="480.0" prefHeight="26.0" prefWidth="193.0" promptText="Выберите дату увольнения" />
+                  <Button fx:id="updateWorkActivityPersonButton" layoutX="809.0" layoutY="403.0" mnemonicParsing="false" onAction="#updateWorkActivityPerson" prefHeight="26.0" prefWidth="82.0" text="Изменить" />
+                  <Button fx:id="deleteWorkActivityPersonButton" layoutX="809.0" layoutY="443.0" mnemonicParsing="false" onAction="#deleteWorkActivityPerson" prefHeight="26.0" prefWidth="83.0" text="Удалить" />
                </children>
             </AnchorPane>
          </content>
