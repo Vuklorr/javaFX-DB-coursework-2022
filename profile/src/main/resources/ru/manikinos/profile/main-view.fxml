@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="547.0" prefWidth="901.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.manikinos.profile.MainController">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="633.0" prefWidth="901.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.manikinos.profile.MainController">
   <tabs>
     <Tab text="Запросы">
       <content>
@@ -57,7 +57,7 @@
       </Tab>
       <Tab text="Документы">
         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="540.0" prefWidth="902.0">
                <children>
                   <TableView fx:id="documentTable" layoutX="14.0" layoutY="14.0" prefHeight="271.0" prefWidth="547.0">
                     <columns>
@@ -229,6 +229,8 @@
                   <DatePicker fx:id="dateOfDismissalWAPDatePicker" layoutX="598.0" layoutY="480.0" prefHeight="26.0" prefWidth="193.0" promptText="Выберите дату увольнения" />
                   <Button fx:id="updateWAPButton" layoutX="809.0" layoutY="403.0" mnemonicParsing="false" onAction="#updateWorkActivityPersonal" prefHeight="26.0" prefWidth="82.0" text="Изменить" />
                   <Button fx:id="deleteWAPButton" layoutX="809.0" layoutY="443.0" mnemonicParsing="false" onAction="#deleteWorkActivityPersonal" prefHeight="26.0" prefWidth="83.0" text="Удалить" />
+                  <Text layoutX="14.0" layoutY="537.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Список всех мест работы с отработанным стажем и ставкой:" />
+                  <Button fx:id="listAllWorksButton" layoutX="359.0" layoutY="520.0" mnemonicParsing="false" onAction="#getListAllWorks" text="Получить список" />
                </children>
             </AnchorPane>
          </content>

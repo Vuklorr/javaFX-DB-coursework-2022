@@ -7,6 +7,8 @@ module ru.manikinos.profile {
 
     opens ru.manikinos.profile to javafx.fxml;
     opens ru.manikinos.profile.entity to javafx.fxml;
+    opens ru.manikinos.profile.controller to javafx.fxml;
     exports ru.manikinos.profile;
     exports ru.manikinos.profile.entity;
+    exports ru.manikinos.profile.controller;
 }

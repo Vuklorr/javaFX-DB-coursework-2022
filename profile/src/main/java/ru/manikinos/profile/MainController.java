@@ -9,6 +9,7 @@ import ru.manikinos.profile.dao.UpdateDAO;
 import ru.manikinos.profile.datainit.SelectionMode;
 import ru.manikinos.profile.entity.*;
 import ru.manikinos.profile.datainit.InitData;
+import ru.manikinos.profile.util.SceneMoves;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -17,6 +18,8 @@ import java.util.List;
 
 public class MainController {
 
+    @FXML
+    private Button listAllWorksButton;
     @FXML
     private TableView<PersonalData> personalDataTable;
 
@@ -587,5 +590,10 @@ public class MainController {
                 dateOfDismissalWAPDatePicker.getValue().toString(),
                 personWorkOldWAP);
         initData.initWorkActivityPersonal(idPersonWAPColumn, idWorkWAPColumn, dateOfHiringWAPColumn, dateOfDismissalWAPColumn, workActivityPersonalTable);
+    }
+
+    @FXML
+    private void getListAllWorks(ActionEvent event) {
+        SceneMoves.openNewScene("listAllWorks-view.fxml", listAllWorksButton, "Список всех мест работы с отработанным стажем и ставкой");
     }
 }
