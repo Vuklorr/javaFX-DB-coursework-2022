@@ -21,6 +21,8 @@ import java.util.List;
 public class MainController {
 
     @FXML
+    private Button workBookButton;
+    @FXML
     private Button profileButton;
     @FXML
     private Button privateContactButton;
@@ -638,5 +640,10 @@ public class MainController {
     @FXML
     private void getProfile(ActionEvent event) {
         SceneMoves.openNewScene("profile-view.fxml", profileButton, "Анкета");
+    }
+
+    @FXML
+    private void getWorkBook(ActionEvent event) {
+        SceneMoves.openNewScene("workBook-view.fxml", workBookButton, "Трудовая книжка");
     }
 }

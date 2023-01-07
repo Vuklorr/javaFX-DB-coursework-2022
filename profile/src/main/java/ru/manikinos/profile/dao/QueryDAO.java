@@ -279,6 +279,28 @@ public class QueryDAO {
         return profile;
     }
 
+    public WorkBook getWorkBook(String id) {
+        WorkBook workBook = null;
+        final String GET_WORK_BOOK_QUERY = "SELECT pd.name, pd.patronymic, pd.surname\n" +
+                "FROM Personal_data pd\n" +
+                "WHERE pd.id = ?;";
+
+        try(PreparedStatement preparedStatement = connection.prepareStatement(GET_WORK_BOOK_QUERY)) {
+            preparedStatement.setInt(1, Integer.parseInt(id));
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()) {
+                String name = resultSet.getString(1);
+                String patronymic = resultSet.getString(2);
+                String surname = resultSet.getString(3);
+
+                workBook = new WorkBook(name, patronymic, surname);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return workBook;
+    }
 
     private void queryForNearestPerson(List<NearestPerson> persons, PreparedStatement preparedStatement) throws SQLException {
         ResultSet resultSetStreet = preparedStatement.executeQuery();

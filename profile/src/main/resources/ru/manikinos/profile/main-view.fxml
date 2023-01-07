@@ -45,7 +45,7 @@
                         <Text layoutX="425.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Фамилия" />
                         <Text layoutX="425.0" layoutY="123.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Номер телефона" />
                         <Text layoutX="9.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Вывести структурированную анкету:" />
-                        <Button fx:id="profileButton" layoutX="227.0" layoutY="187.0" mnemonicParsing="false" onAction="#getProfile" text="Показать" />
+                        <Button fx:id="profileButton" layoutX="227.0" layoutY="187.0" mnemonicParsing="false" onAction="#getProfile" text="Вывести" />
                      </children>
                   </AnchorPane>
                </children>
@@ -238,6 +238,8 @@
                   <Button fx:id="deleteWAPButton" layoutX="809.0" layoutY="443.0" mnemonicParsing="false" onAction="#deleteWorkActivityPersonal" prefHeight="26.0" prefWidth="83.0" text="Удалить" />
                   <Text layoutX="14.0" layoutY="537.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Список всех мест работы с отработанным стажем и ставкой:" />
                   <Button fx:id="listAllWorksButton" layoutX="359.0" layoutY="520.0" mnemonicParsing="false" onAction="#getListAllWorks" text="Получить список" />
+                  <Button fx:id="workBookButton" layoutX="661.0" layoutY="520.0" mnemonicParsing="false" onAction="#getWorkBook" text="Вывести" />
+                  <Text layoutX="490.0" layoutY="537.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Вывести трудовую книжку:" />
                </children>
             </AnchorPane>
          </content>

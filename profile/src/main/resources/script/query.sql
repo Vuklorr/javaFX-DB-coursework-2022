@@ -37,7 +37,7 @@ FROM FAMILY_RELATIONS fr
 WHERE pd1.id = 1;
 
 --6
--- данные о работе в 1 запросе
+-- Данные о работе в 1 запросе
 SELECT pd.name, pd.patronymic, pd.surname, pd.phone_number,
        a.country, a.city, a.region, a.street, a.house, a.flat
 FROM Personal_data pd
@@ -45,12 +45,9 @@ FROM Personal_data pd
 WHERE pd.id = 1;
 
 --7
---Разбить на 2 запроса, чтобы сделать нормально трудовую книжку
-SELECT pd.name, pd.patronymic, pd.surname,
-       wa.name_company, wa.name_work, DATEDIFF(hour, wap.date_of_hiring, wap.date_of_dismissal) AS "Отработанные часы"
+-- Данные о работе в 1 запросе
+SELECT pd.name, pd.patronymic, pd.surname
 FROM Personal_data pd
-         INNER JOIN Work_activity_personal  wap on pd.id = wap.id_personal_data
-         INNER JOIN Work_activity  wa on wa.id = wap.id_work
 WHERE pd.id = 1;
 
 --8
