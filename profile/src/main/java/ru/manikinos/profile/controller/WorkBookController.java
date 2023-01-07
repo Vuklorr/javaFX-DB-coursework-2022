@@ -55,6 +55,6 @@ public class WorkBookController {
         WorkBook workBook = queryDAO.getWorkBook(idPersonalDataTextField.getText());
 
         nameLabel.setText(workBook.getSurname() + " " + workBook.getName() + " " + workBook.getSurname());
-        WorkExperience.workExperience(nameCompanyColumn, nameWorkColumn, salaryColumn, workExperienceColumn, listWorksTable, idPersonalDataTextField);
+        WorkExperience.workExperience(nameCompanyColumn, nameWorkColumn, salaryColumn, workExperienceColumn, listWorksTable, idPersonalDataTextField.getText());
     }
 }

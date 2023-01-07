@@ -2,7 +2,12 @@ package ru.manikinos.profile;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
+import ru.manikinos.profile.controller.ProfileRelativeController;
 import ru.manikinos.profile.dao.AddDAO;
 import ru.manikinos.profile.dao.DeleteDAO;
 import ru.manikinos.profile.dao.QueryDAO;
@@ -13,6 +18,7 @@ import ru.manikinos.profile.datainit.InitData;
 import ru.manikinos.profile.entity.query.NearestPerson;
 import ru.manikinos.profile.util.SceneMoves;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -20,6 +26,8 @@ import java.util.List;
 
 public class MainController {
 
+    @FXML
+    private Button profileRelativeButton;
     @FXML
     private Button workBookButton;
     @FXML
@@ -278,7 +286,6 @@ public class MainController {
     private final QueryDAO queryDAO = new QueryDAO();
     public MainController() throws SQLException, ClassNotFoundException {
     }
-
     @FXML
     private void initialize() {
         initData.initAddress(idAddressColumn,
@@ -645,5 +652,19 @@ public class MainController {
     @FXML
     private void getWorkBook(ActionEvent event) {
         SceneMoves.openNewScene("workBook-view.fxml", workBookButton, "Трудовая книжка");
+    }
+
+    @FXML
+    private void getProfileRelative(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("profileRelative-view.fxml"));
+        Parent root = loader.load();
+
+        ProfileRelativeController profileRelativeController = loader.getController();
+        profileRelativeController.setIdRelativeLabel(idSecondFRTextField.getText());
+
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.setTitle("Анкета родственника");
+        //SceneMoves.openNewScene("profileRelative-view.fxml", profileRelativeButton, "Анкета родственника");
     }
 }

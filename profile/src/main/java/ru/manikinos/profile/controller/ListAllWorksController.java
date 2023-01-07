@@ -41,7 +41,7 @@ public class ListAllWorksController {
 
     @FXML
     private void getListAllWorks(ActionEvent event) throws SQLException, ClassNotFoundException {
-        WorkExperience.workExperience(nameCompanyColumn, nameWorkColumn, salaryColumn, workExperienceColumn, listWorksTable, idPersonalDataTextField);
+        WorkExperience.workExperience(nameCompanyColumn, nameWorkColumn, salaryColumn, workExperienceColumn, listWorksTable, idPersonalDataTextField.getText());
     }
 
     @FXML

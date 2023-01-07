@@ -10,7 +10,7 @@ import ru.manikinos.profile.entity.query.AllWorks;
 import java.sql.SQLException;
 
 public class WorkExperience {
-    public static void workExperience(TableColumn<AllWorks, String> nameCompanyColumn, TableColumn<AllWorks, String> nameWorkColumn, TableColumn<AllWorks, Integer> salaryColumn, TableColumn<AllWorks, Integer> workExperienceColumn, TableView<AllWorks> listWorksTable, TextField idPersonalDataTextField) throws SQLException, ClassNotFoundException {
+    public static void workExperience(TableColumn<AllWorks, String> nameCompanyColumn, TableColumn<AllWorks, String> nameWorkColumn, TableColumn<AllWorks, Integer> salaryColumn, TableColumn<AllWorks, Integer> workExperienceColumn, TableView<AllWorks> listWorksTable, String idPersonalData) throws SQLException, ClassNotFoundException {
         QueryDAO queryDAO = new QueryDAO();
 
         nameCompanyColumn.setCellValueFactory(new PropertyValueFactory<>("nameCompany"));
@@ -18,6 +18,6 @@ public class WorkExperience {
         salaryColumn.setCellValueFactory(new PropertyValueFactory<>("salary"));
         workExperienceColumn.setCellValueFactory(new PropertyValueFactory<>("workExperience"));
 
-        listWorksTable.setItems(queryDAO.getListAllWorks(idPersonalDataTextField.getText()));
+        listWorksTable.setItems(queryDAO.getListAllWorks(idPersonalData));
     }
 }

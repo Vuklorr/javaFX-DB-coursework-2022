@@ -94,6 +94,6 @@ public class ProfileController {
         houseLabel.setText(profile.getHouse());
         flatLabel.setText(String.valueOf(profile.getFlat()));
 
-        WorkExperience.workExperience(nameCompanyColumn, nameWorkColumn, salaryColumn, workExperienceColumn, listWorksTable, idPersonalDataTextField);
+        WorkExperience.workExperience(nameCompanyColumn, nameWorkColumn, salaryColumn, workExperienceColumn, listWorksTable, idPersonalDataTextField.getText());
     }
 }

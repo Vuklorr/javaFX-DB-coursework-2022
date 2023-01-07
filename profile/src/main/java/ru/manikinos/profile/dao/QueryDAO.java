@@ -315,4 +315,41 @@ public class QueryDAO {
             persons.add(new NearestPerson(id, name, patronymic, surname, flat));
         }
     }
+
+    public ProfileRelative getProfileRelative(String id) {
+        ProfileRelative profileRelative = null;
+        final String GET_PROFILE_RELATIVE_QUERY = "SELECT pd2.name, pd2.patronymic, pd2.surname, pd2.phone_number,\n" +
+                "       a.country, a.city, a.region, a.street, a.house, a.flat,\n" +
+                "       Tor.name\n" +
+                "FROM FAMILY_RELATIONS fr\n" +
+                "         INNER JOIN PERSONAL_DATA pd1 ON pd1.id = fr.id_first_person\n" +
+                "         INNER JOIN PERSONAL_DATA pd2 ON pd2.id = fr.id_second_person\n" +
+                "         INNER JOIN Address a on a.id = pd2.id_address\n" +
+                "         INNER JOIN Type_of_relationship Tor on Tor.id = fr.id_type_of_relationship\n" +
+                "WHERE pd1.id = ?;";
+
+        try(PreparedStatement preparedStatement = connection.prepareStatement(GET_PROFILE_RELATIVE_QUERY)) {
+            preparedStatement.setInt(1, Integer.parseInt(id));
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()) {
+                String name = resultSet.getString(1);
+                String patronymic = resultSet.getString(2);
+                String surname = resultSet.getString(3);
+                String phoneNumber = resultSet.getString(4);
+                String country = resultSet.getString(5);
+                String city = resultSet.getString(6);
+                String region = resultSet.getString(7);
+                String street = resultSet.getString(8);
+                String house = resultSet.getString(9);
+                int flat = resultSet.getInt(10);
+                String typeRelative = resultSet.getString(11);
+
+                profileRelative = new ProfileRelative(new Profile(name, patronymic, surname, phoneNumber, country, city, region, street, house, flat), typeRelative);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return profileRelative;
+    }
 }
