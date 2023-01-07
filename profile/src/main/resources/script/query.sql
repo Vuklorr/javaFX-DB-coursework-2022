@@ -1,7 +1,8 @@
 --1
 SELECT wa.name_company, wa.name_work, wa.salary, DATEDIFF(hour, wap.date_of_hiring, wap.date_of_dismissal) AS "Отработанные часы"
 FROM Work_activity wa
-         INNER JOIN Work_activity_personal wap ON wap.id_work = wa.id;
+INNER JOIN Work_activity_personal wap ON wap.id_work = wa.id
+WHERE wap.id_personal_data = 1;
 
 --2
 SELECT t.name, COUNT(d.id_type)
@@ -11,7 +12,7 @@ WHERE d.id_personal_data = 1
 GROUP BY d.id_type;
 
 --3
-SELECT pd.name, pd.patronymic, pd.surname, a.flat
+SELECT pd.id, pd.name, pd.patronymic, pd.surname
 FROM Personal_data pd
          INNER JOIN Address A on A.id = pd.id_address
 WHERE a.country = 'Россия' AND

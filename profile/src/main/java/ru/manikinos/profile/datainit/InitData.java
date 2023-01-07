@@ -11,7 +11,6 @@ import java.time.LocalDate;
 
 public class InitData {
     private final AllDataDAO allDataDAO = new AllDataDAO();
-    private final SelectionMode selectionMode = new SelectionMode();
 
     public InitData() throws SQLException, ClassNotFoundException {
     }

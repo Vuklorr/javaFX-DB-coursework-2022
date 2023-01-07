@@ -13,11 +13,6 @@
 
 <TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="633.0" prefWidth="901.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.manikinos.profile.MainController">
   <tabs>
-    <Tab text="Запросы">
-      <content>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-      </content>
-    </Tab>
       <Tab text="Личные данные">
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
@@ -102,6 +97,8 @@
                         <Button fx:id="updateTypeButton" layoutX="225.0" layoutY="117.0" mnemonicParsing="false" onAction="#updateType" prefHeight="24.0" prefWidth="108.0" text="Изменить" />
                      </children>
                   </AnchorPane>
+                  <Text layoutX="14.0" layoutY="515.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Вывести список всех документов человека и по каждому виду посчитать количество документов этого же вида:" />
+                  <Button fx:id="listAllDocumentsButton" layoutX="650.0" layoutY="498.0" mnemonicParsing="false" onAction="#getListAllDocuments" text="Вывести список" />
                </children>
             </AnchorPane>
         </content>
@@ -142,6 +139,10 @@
                         <Text layoutX="421.0" layoutY="142.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Квартира" />
                      </children>
                   </AnchorPane>
+                  <Text layoutX="14.0" layoutY="516.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Найти ближайшего человека:" />
+                  <Button fx:id="nearestPersonButton" layoutX="196.0" layoutY="498.0" mnemonicParsing="false" onAction="#searchNearestPerson" prefHeight="26.0" prefWidth="70.0" text="Найти" />
+                  <Text layoutX="14.0" layoutY="562.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID и ФИО ближайшего человека:" />
+                  <Label fx:id="nearestPersonLabel" layoutX="203.0" layoutY="549.0" text="." />
                </children>
             </AnchorPane>
          </content>

@@ -5,21 +5,31 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import ru.manikinos.profile.dao.AddDAO;
 import ru.manikinos.profile.dao.DeleteDAO;
+import ru.manikinos.profile.dao.QueryDAO;
 import ru.manikinos.profile.dao.UpdateDAO;
 import ru.manikinos.profile.datainit.SelectionMode;
 import ru.manikinos.profile.entity.*;
 import ru.manikinos.profile.datainit.InitData;
+import ru.manikinos.profile.entity.query.NearestPerson;
 import ru.manikinos.profile.util.SceneMoves;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.OptionalInt;
+import java.util.stream.IntStream;
 
 public class MainController {
 
     @FXML
     private Button listAllWorksButton;
+    @FXML
+    private Button listAllDocumentsButton;
+    @FXML
+    private Button nearestPersonButton;
+    @FXML
+    private Label nearestPersonLabel;
     @FXML
     private TableView<PersonalData> personalDataTable;
 
@@ -174,17 +184,6 @@ public class MainController {
     private TableView<Type> typeTable;
 
     @FXML
-    private Button waAcceptButton;
-
-    @FXML
-    private Button waAddButton;
-
-    @FXML
-    private Button waCancelButton;
-
-    @FXML
-    private Button waDeleteButton;
-    @FXML
     private TextField idTypeTextField;
     @FXML
     private TextField nameTypeTextField;
@@ -270,6 +269,7 @@ public class MainController {
     private final AddDAO addDAO = new AddDAO();
     private final UpdateDAO updateDAO = new UpdateDAO();
     private final DeleteDAO deleteDAO = new DeleteDAO();
+    private final QueryDAO queryDAO = new QueryDAO();
     public MainController() throws SQLException, ClassNotFoundException {
     }
 
@@ -593,7 +593,31 @@ public class MainController {
     }
 
     @FXML
+    private void searchNearestPerson(ActionEvent event) {
+        NearestPerson person = null;
+        try {
+            person = queryDAO.getNearestPerson(countryAddressTextField.getText(),
+                    cityAddressTextField.getText(),
+                    regionAddressTextField.getText(),
+                    streetAddressTextField.getText(),
+                    houseAddressTextField.getText(),
+                    idAddressTextField.getText(),
+                    flatAddressTextField.getText());
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        nearestPersonLabel.setText(person.getId() + " " + person.getName() + " " + person.getPatronymic() + " " + person.getSurname());
+
+    }
+
+    @FXML
     private void getListAllWorks(ActionEvent event) {
         SceneMoves.openNewScene("listAllWorks-view.fxml", listAllWorksButton, "Список всех мест работы с отработанным стажем и ставкой");
+    }
+
+    @FXML
+    private void getListAllDocuments(ActionEvent event) {
+        SceneMoves.openNewScene("listAllDocuments-view.fxml", listAllDocumentsButton, "Список всех документов человека и их количество");
     }
 }
