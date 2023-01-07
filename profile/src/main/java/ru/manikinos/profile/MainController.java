@@ -613,7 +613,7 @@ public class MainController {
             throw new RuntimeException(e);
         }
 
-        nearestPersonLabel.setText(person.getId() + " " + person.getName() + " " + person.getPatronymic() + " " + person.getSurname());
+        nearestPersonLabel.setText(person.getId() + " " + person.getSurname() + " " + person.getName() + " " + person.getPatronymic());
 
     }
 
