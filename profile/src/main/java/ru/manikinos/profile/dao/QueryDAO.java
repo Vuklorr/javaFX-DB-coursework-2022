@@ -2,6 +2,8 @@ package ru.manikinos.profile.dao;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import ru.manikinos.profile.controller.ProcessingOfDataController;
+import ru.manikinos.profile.entity.Address;
 import ru.manikinos.profile.entity.query.*;
 import ru.manikinos.profile.util.Connections;
 
@@ -352,4 +354,37 @@ public class QueryDAO {
         }
         return profileRelative;
     }
+
+    public ProcessingOfPersonalData getProcessing(String id) {
+        ProcessingOfPersonalData processing = null;
+        final String GET_PROCESSING_QUERY = "SELECT pd.name, pd.patronymic, pd.surname,\n" +
+                "       a.country, a.city, a.region, a.street, a.house, a.flat\n" +
+                "FROM Personal_data pd\n" +
+                "         INNER JOIN Address A on A.id = pd.id_address\n" +
+                "WHERE pd.id = ?;";
+
+        try(PreparedStatement preparedStatement = connection.prepareStatement(GET_PROCESSING_QUERY)) {
+            preparedStatement.setInt(1, Integer.parseInt(id));
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()) {
+                String name = resultSet.getString(1);
+                String patronymic = resultSet.getString(2);
+                String surname = resultSet.getString(3);
+
+                String country = resultSet.getString(4);
+                String city = resultSet.getString(5);
+                String region = resultSet.getString(6);
+                String street = resultSet.getString(7);
+                String house = resultSet.getString(8);
+                int flat = resultSet.getInt(9);
+
+                processing = new ProcessingOfPersonalData(name, patronymic, surname, country, city, region, street, house, flat);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return processing;
+    }
+
 }

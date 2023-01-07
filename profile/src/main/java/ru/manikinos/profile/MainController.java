@@ -27,6 +27,8 @@ import java.util.List;
 public class MainController {
 
     @FXML
+    private Button processingOfPDButton;
+    @FXML
     private Button profileRelativeButton;
     @FXML
     private Button workBookButton;
@@ -666,5 +668,10 @@ public class MainController {
         stage.setScene(new Scene(root));
         stage.setTitle("Анкета родственника");
         //SceneMoves.openNewScene("profileRelative-view.fxml", profileRelativeButton, "Анкета родственника");
+    }
+
+    @FXML
+    private void getProcessingOfPD(ActionEvent event) {
+        SceneMoves.openNewScene("processingPD-view.fxml", processingOfPDButton, "Согласие на обработку персональных данных");
     }
 }

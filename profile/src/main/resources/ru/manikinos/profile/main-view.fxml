@@ -46,6 +46,8 @@
                         <Text layoutX="425.0" layoutY="123.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Номер телефона" />
                         <Text layoutX="9.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Вывести структурированную анкету:" />
                         <Button fx:id="profileButton" layoutX="227.0" layoutY="187.0" mnemonicParsing="false" onAction="#getProfile" text="Вывести" />
+                        <Text layoutX="425.0" layoutY="212.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Вывести согласие на обработку персональных данных:" />
+                        <Button fx:id="processingOfPDButton" layoutX="738.0" layoutY="195.0" mnemonicParsing="false" onAction="#getProcessingOfPD" text="Вывести" />
                      </children>
                   </AnchorPane>
                </children>
