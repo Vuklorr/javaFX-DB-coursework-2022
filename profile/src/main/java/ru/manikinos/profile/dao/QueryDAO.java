@@ -5,12 +5,14 @@ import javafx.collections.ObservableList;
 import ru.manikinos.profile.entity.query.AllDocuments;
 import ru.manikinos.profile.entity.query.AllWorks;
 import ru.manikinos.profile.entity.query.NearestPerson;
+import ru.manikinos.profile.entity.query.Recruit;
 import ru.manikinos.profile.util.Connections;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -193,6 +195,32 @@ public class QueryDAO {
 
             return person;
         }
+    }
+
+    public ObservableList<Recruit> getListRecruit() {
+        ObservableList<Recruit> recruits = FXCollections.observableArrayList();
+        final String GET_LIST_RECRUIT_QUERY = "SELECT pd.name, pd.patronymic, pd.surname, d.start_date\n" +
+                "FROM Personal_data pd\n" +
+                "         INNER JOIN Document d ON d.id_personal_data = pd.id\n" +
+                "WHERE d.id_type = 7 AND\n" +
+                "        d.start_date > CURRENT_DATE AND\n" +
+                "        d.start_date < DATEADD(year, 1 ,CURRENT_DATE);";
+
+        try(PreparedStatement preparedStatement = connection.prepareStatement(GET_LIST_RECRUIT_QUERY)) {
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                String name = resultSet.getString(1);
+                String patronymic = resultSet.getString(2);
+                String surname = resultSet.getString(3);
+                LocalDate dateRecruit = resultSet.getDate(4).toLocalDate();
+
+                recruits.add(new Recruit(name, patronymic, surname, dateRecruit));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return recruits;
     }
 
     private void queryForNearestPerson(List<NearestPerson> persons, PreparedStatement preparedStatement) throws SQLException {

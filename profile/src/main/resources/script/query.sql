@@ -22,10 +22,12 @@ WHERE a.country = 'Россия' AND
         a.house = '5А';
 
 --4
-SELECT pd.name, pd.patronymic, pd.surname
+SELECT pd.name, pd.patronymic, pd.surname, d.start_date
 FROM Personal_data pd
          INNER JOIN Document d ON d.id_personal_data = pd.id
-WHERE d.id_type = 7 AND d.start_date > CURRENT_DATE;
+WHERE d.id_type = 7 AND
+        d.start_date > CURRENT_DATE AND
+        d.start_date < DATEADD(year, 1 ,CURRENT_DATE);
 
 --5
 SELECT pd1.surname, pd1.phone_number,pd2.surname, pd2.phone_number

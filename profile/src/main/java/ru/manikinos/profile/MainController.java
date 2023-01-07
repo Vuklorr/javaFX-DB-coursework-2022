@@ -32,6 +32,8 @@ public class MainController {
     private Label nearestPersonLabel;
     @FXML
     private TableView<PersonalData> personalDataTable;
+    @FXML
+    private Button listRecruit;
 
     @FXML
     private Button updateAddressButton;
@@ -619,5 +621,10 @@ public class MainController {
     @FXML
     private void getListAllDocuments(ActionEvent event) {
         SceneMoves.openNewScene("listAllDocuments-view.fxml", listAllDocumentsButton, "Список всех документов человека и их количество");
+    }
+
+    @FXML
+    private void getListRecruit(ActionEvent event) {
+        SceneMoves.openNewScene("listRecruit-view.fxml", listRecruit, "Список всех людей, подлежащих ближайшему призыву");
     }
 }

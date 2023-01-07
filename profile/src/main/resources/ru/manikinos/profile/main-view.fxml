@@ -99,6 +99,8 @@
                   </AnchorPane>
                   <Text layoutX="14.0" layoutY="515.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Вывести список всех документов человека и по каждому виду посчитать количество документов этого же вида:" />
                   <Button fx:id="listAllDocumentsButton" layoutX="650.0" layoutY="498.0" mnemonicParsing="false" onAction="#getListAllDocuments" text="Вывести список" />
+                  <Text layoutX="14.0" layoutY="559.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Вывести список всех людей, подлежащих ближайшему призыву:" />
+                  <Button fx:id="listRecruit" layoutX="385.0" layoutY="542.0" mnemonicParsing="false" onAction="#getListRecruit" prefHeight="26.0" prefWidth="106.0" text="Вывести список" />
                </children>
             </AnchorPane>
         </content>
