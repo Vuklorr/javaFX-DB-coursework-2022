@@ -184,6 +184,8 @@
                   <Text layoutX="358.0" layoutY="475.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID типа отношения" />
                   <Button fx:id="addFRButton" layoutX="772.0" layoutY="385.0" mnemonicParsing="false" onAction="#addFamilyRelations" prefHeight="24.0" prefWidth="104.0" text="Добавить" />
                   <Button fx:id="deleteFRButton" layoutX="772.0" layoutY="458.0" mnemonicParsing="false" onAction="#deleteFamilyRelations" prefHeight="24.0" prefWidth="103.0" text=" Удалить" />
+                  <Text layoutX="18.0" layoutY="528.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Показать привытные контакты:" />
+                  <Button fx:id="privateContactButton" layoutX="212.0" layoutY="511.0" mnemonicParsing="false" onAction="#getPrivateContact" text="Показать" />
                </children>
             </AnchorPane>
          </content>

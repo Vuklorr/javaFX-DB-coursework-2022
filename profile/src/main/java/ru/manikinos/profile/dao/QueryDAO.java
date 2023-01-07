@@ -2,10 +2,7 @@ package ru.manikinos.profile.dao;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import ru.manikinos.profile.entity.query.AllDocuments;
-import ru.manikinos.profile.entity.query.AllWorks;
-import ru.manikinos.profile.entity.query.NearestPerson;
-import ru.manikinos.profile.entity.query.Recruit;
+import ru.manikinos.profile.entity.query.*;
 import ru.manikinos.profile.util.Connections;
 
 import java.sql.Connection;
@@ -221,6 +218,33 @@ public class QueryDAO {
             throw new RuntimeException(e);
         }
         return recruits;
+    }
+
+    public ObservableList<PrivateContact> getPrivateContact(String id) {
+        ObservableList<PrivateContact> contacts = FXCollections.observableArrayList();
+        final String GET_PRIVATE_CONTACT_QUERY = "SELECT pd1.surname, pd1.phone_number,pd2.surname, pd2.phone_number\n" +
+                "FROM FAMILY_RELATIONS fr\n" +
+                "         INNER JOIN PERSONAL_DATA pd1 ON pd1.id = fr.id_first_person\n" +
+                "         INNER JOIN PERSONAL_DATA pd2 ON pd2.id = fr.id_second_person\n" +
+                "WHERE pd1.id = ?;";
+
+        try(PreparedStatement preparedStatement = connection.prepareStatement(GET_PRIVATE_CONTACT_QUERY)) {
+            preparedStatement.setInt(1, Integer.parseInt(id));
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                String namePerson = resultSet.getString(1);
+                String phoneNumberPerson = resultSet.getString(2);
+                String nameRelative = resultSet.getString(3);
+                String phoneNumberRelative = resultSet.getString(4);
+
+                contacts.add(new PrivateContact(namePerson, phoneNumberPerson, nameRelative, phoneNumberRelative));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return contacts;
     }
 
     private void queryForNearestPerson(List<NearestPerson> persons, PreparedStatement preparedStatement) throws SQLException {

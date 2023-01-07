@@ -23,6 +23,8 @@ import java.util.stream.IntStream;
 public class MainController {
 
     @FXML
+    private Button privateContactButton;
+    @FXML
     private Button listAllWorksButton;
     @FXML
     private Button listAllDocumentsButton;
@@ -626,5 +628,10 @@ public class MainController {
     @FXML
     private void getListRecruit(ActionEvent event) {
         SceneMoves.openNewScene("listRecruit-view.fxml", listRecruit, "Список всех людей, подлежащих ближайшему призыву");
+    }
+
+    @FXML
+    private void getPrivateContact(ActionEvent event) {
+        SceneMoves.openNewScene("privateContact-view.fxml", privateContactButton, "Приватные контакты человека");
     }
 }
