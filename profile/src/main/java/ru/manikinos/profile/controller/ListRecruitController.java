@@ -32,13 +32,10 @@ public class ListRecruitController {
     @FXML
     private TableColumn<Recruit, String> surnameRecruitColumn;
 
-    private final QueryDAO queryDAO = new QueryDAO();
-
-    public ListRecruitController() throws SQLException, ClassNotFoundException {
-    }
-
     @FXML
-    private void initialize() {
+    private void initialize() throws SQLException, ClassNotFoundException {
+        QueryDAO queryDAO = new QueryDAO();
+
         nameRecruitColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         patronymicRecruitColumn.setCellValueFactory(new PropertyValueFactory<>("patronymic"));
         surnameRecruitColumn.setCellValueFactory(new PropertyValueFactory<>("surname"));

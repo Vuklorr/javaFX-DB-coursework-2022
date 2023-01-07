@@ -32,10 +32,6 @@ public class ListAllDocumentsController {
 
     @FXML
     private TableColumn<AllDocuments, String> nameDocumentColumn;
-    private final QueryDAO queryDAO = new QueryDAO();
-
-    public ListAllDocumentsController() throws SQLException, ClassNotFoundException {
-    }
 
     @FXML
     private void back(ActionEvent event) {
@@ -43,7 +39,9 @@ public class ListAllDocumentsController {
     }
 
     @FXML
-    private void getListAllDocuments(ActionEvent event) {
+    private void getListAllDocuments(ActionEvent event) throws SQLException, ClassNotFoundException {
+        QueryDAO queryDAO = new QueryDAO();
+
         nameDocumentColumn.setCellValueFactory(new PropertyValueFactory<>("nameDocument"));
         countDocumentColumn.setCellValueFactory(new PropertyValueFactory<>("countDocument"));
 

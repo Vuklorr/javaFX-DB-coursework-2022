@@ -38,13 +38,10 @@ public class ListAllWorksController {
     @FXML
     private TableColumn<AllWorks, Integer> workExperienceColumn;
 
-    private final QueryDAO queryDAO = new QueryDAO();
-
-    public ListAllWorksController() throws SQLException, ClassNotFoundException {
-    }
-
     @FXML
-    private void getListAllWorks(ActionEvent event) {
+    private void getListAllWorks(ActionEvent event) throws SQLException, ClassNotFoundException {
+        QueryDAO queryDAO = new QueryDAO();
+
         nameCompanyColumn.setCellValueFactory(new PropertyValueFactory<>("nameCompany"));
         nameWorkColumn.setCellValueFactory(new PropertyValueFactory<>("nameWork"));
         salaryColumn.setCellValueFactory(new PropertyValueFactory<>("salary"));
