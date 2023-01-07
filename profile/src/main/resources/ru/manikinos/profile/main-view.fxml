@@ -27,7 +27,7 @@
                         <TableColumn fx:id="phoneNumberPDColumn" prefWidth="241.60003662109375" text="Номер телефона" />
                     </columns>
                   </TableView>
-                  <AnchorPane layoutX="14.0" layoutY="246.0" prefHeight="258.0" prefWidth="878.0">
+                  <AnchorPane layoutX="14.0" layoutY="246.0" prefHeight="346.0" prefWidth="878.0">
                      <children>
                         <TextField fx:id="idPDTextField" layoutX="137.0" layoutY="14.0" prefHeight="24.0" prefWidth="212.0" promptText="Введите id" />
                         <Button fx:id="deletePDButton" layoutX="512.0" layoutY="148.0" mnemonicParsing="false" onAction="#deletePersonalData" prefHeight="24.0" prefWidth="111.0" text="Удалить" />
@@ -38,12 +38,14 @@
                         <Text layoutX="13.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID адреса" />
                         <TextField fx:id="namePDTextField" layoutX="138.0" layoutY="105.0" prefHeight="24.0" prefWidth="211.0" promptText="Введите имя" />
                         <TextField fx:id="patronymicPDTextField" layoutX="535.0" layoutY="14.0" prefHeight="26.0" prefWidth="311.0" promptText="Введите отчество" />
-                        <TextField fx:id="surnamePDTextField" layoutX="539.0" layoutY="58.0" prefHeight="26.0" prefWidth="308.0" promptText="Введите фамилию" />
-                        <TextField fx:id="phoneNumberPDTextField" layoutX="543.0" layoutY="104.0" prefHeight="26.0" prefWidth="301.0" promptText="Введите номер телефона" />
+                        <TextField fx:id="surnamePDTextField" layoutX="536.0" layoutY="58.0" prefHeight="26.0" prefWidth="311.0" promptText="Введите фамилию" />
+                        <TextField fx:id="phoneNumberPDTextField" layoutX="538.0" layoutY="104.0" prefHeight="26.0" prefWidth="307.0" promptText="Введите номер телефона" />
                         <Text layoutX="13.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Имя" />
                         <Text layoutX="425.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Отчество" />
                         <Text layoutX="425.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Фамилия" />
                         <Text layoutX="425.0" layoutY="123.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Номер телефона" />
+                        <Text layoutX="9.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Вывести структурированную анкету:" />
+                        <Button fx:id="profileButton" layoutX="227.0" layoutY="187.0" mnemonicParsing="false" onAction="#getProfile" text="Показать" />
                      </children>
                   </AnchorPane>
                </children>

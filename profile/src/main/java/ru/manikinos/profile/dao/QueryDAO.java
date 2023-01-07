@@ -247,6 +247,39 @@ public class QueryDAO {
         return contacts;
     }
 
+    public Profile getProfile(String id) {
+        Profile profile = null;
+        final String GET_PROFILE_QUERY = "SELECT pd.name, pd.patronymic, pd.surname, pd.phone_number,\n" +
+                "       a.country, a.city, a.region, a.street, a.house, a.flat\n" +
+                "FROM Personal_data pd\n" +
+                "         INNER JOIN Address A on A.id = pd.id_address\n" +
+                "WHERE pd.id = ?;";
+
+        try(PreparedStatement preparedStatement = connection.prepareStatement(GET_PROFILE_QUERY)) {
+            preparedStatement.setInt(1, Integer.parseInt(id));
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()) {
+                String name = resultSet.getString(1);
+                String patronymic = resultSet.getString(2);
+                String surname = resultSet.getString(3);
+                String phoneNumber = resultSet.getString(4);
+                String country = resultSet.getString(5);
+                String city = resultSet.getString(6);
+                String region = resultSet.getString(7);
+                String street = resultSet.getString(8);
+                String house = resultSet.getString(9);
+                int flat = resultSet.getInt(10);
+
+                profile = new Profile(name, patronymic, surname, phoneNumber, country, city, region, street, house, flat);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return profile;
+    }
+
+
     private void queryForNearestPerson(List<NearestPerson> persons, PreparedStatement preparedStatement) throws SQLException {
         ResultSet resultSetStreet = preparedStatement.executeQuery();
 

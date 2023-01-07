@@ -37,14 +37,11 @@ FROM FAMILY_RELATIONS fr
 WHERE pd1.id = 1;
 
 --6
---Разбить на 2 запроса, чтобы сделать нормально анкету
+-- данные о работе в 1 запросе
 SELECT pd.name, pd.patronymic, pd.surname, pd.phone_number,
-       wa.name_company, wa.name_work, DATEDIFF(hour, wap.date_of_hiring, wap.date_of_dismissal) AS "Отработанные часы",
        a.country, a.city, a.region, a.street, a.house, a.flat
 FROM Personal_data pd
          INNER JOIN Address A on A.id = pd.id_address
-         INNER JOIN Work_activity_personal  wap on pd.id = wap.id_personal_data
-         INNER JOIN Work_activity  wa on wa.id = wap.id_work
 WHERE pd.id = 1;
 
 --7

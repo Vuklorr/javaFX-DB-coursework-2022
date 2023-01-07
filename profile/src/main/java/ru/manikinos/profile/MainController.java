@@ -17,11 +17,11 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.OptionalInt;
-import java.util.stream.IntStream;
 
 public class MainController {
 
+    @FXML
+    private Button profileButton;
     @FXML
     private Button privateContactButton;
     @FXML
@@ -633,5 +633,10 @@ public class MainController {
     @FXML
     private void getPrivateContact(ActionEvent event) {
         SceneMoves.openNewScene("privateContact-view.fxml", privateContactButton, "Приватные контакты человека");
+    }
+
+    @FXML
+    private void getProfile(ActionEvent event) {
+        SceneMoves.openNewScene("profile-view.fxml", profileButton, "Анкета");
     }
 }

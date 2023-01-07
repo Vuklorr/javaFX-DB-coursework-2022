@@ -10,6 +10,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import ru.manikinos.profile.dao.QueryDAO;
 import ru.manikinos.profile.entity.query.AllWorks;
 import ru.manikinos.profile.util.SceneMoves;
+import ru.manikinos.profile.util.WorkExperience;
 
 import java.sql.SQLException;
 
@@ -40,14 +41,7 @@ public class ListAllWorksController {
 
     @FXML
     private void getListAllWorks(ActionEvent event) throws SQLException, ClassNotFoundException {
-        QueryDAO queryDAO = new QueryDAO();
-
-        nameCompanyColumn.setCellValueFactory(new PropertyValueFactory<>("nameCompany"));
-        nameWorkColumn.setCellValueFactory(new PropertyValueFactory<>("nameWork"));
-        salaryColumn.setCellValueFactory(new PropertyValueFactory<>("salary"));
-        workExperienceColumn.setCellValueFactory(new PropertyValueFactory<>("workExperience"));
-
-        listWorksTable.setItems(queryDAO.getListAllWorks(idPersonalDataTextField.getText()));
+        WorkExperience.workExperience(nameCompanyColumn, nameWorkColumn, salaryColumn, workExperienceColumn, listWorksTable, idPersonalDataTextField);
     }
 
     @FXML
