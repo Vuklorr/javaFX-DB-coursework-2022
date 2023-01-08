@@ -3,6 +3,7 @@ package ru.manikinos.profile;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -679,9 +680,10 @@ public class MainController {
         ProfileRelativeController profileRelativeController = loader.getController();
         profileRelativeController.setIdRelativeLabel(idSecondFRTextField.getText());
 
-        Stage stage = new Stage();
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));
         stage.setTitle("Анкета родственника");
+        stage.show();
         //SceneMoves.openNewScene("profileRelative-view.fxml", profileRelativeButton, "Анкета родственника");
     }
 

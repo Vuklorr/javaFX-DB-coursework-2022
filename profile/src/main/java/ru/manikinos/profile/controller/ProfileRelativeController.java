@@ -15,6 +15,8 @@ import java.sql.SQLException;
 public class ProfileRelativeController {
 
     @FXML
+    private Button outputButton;
+    @FXML
     private Button backButton;
 
     @FXML
@@ -73,9 +75,7 @@ public class ProfileRelativeController {
     }
 
     @FXML
-    private void initialize() throws SQLException, ClassNotFoundException {
-        MainController mainController = new MainController();
-        //String idPersonalData = mainController.getIdSecondFRText();
+    private void outputProfileRelative(ActionEvent event) throws SQLException, ClassNotFoundException {
         QueryDAO queryDAO = new QueryDAO();
         ProfileRelative profileRelative = queryDAO.getProfileRelative(idRelativeLabel.getText());
 

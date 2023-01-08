@@ -145,5 +145,6 @@
          </font>
       </Label>
       <Label fx:id="idRelativeLabel" layoutX="125.0" layoutY="22.0" text="-" />
+      <Button fx:id="outputButton" layoutX="672.0" layoutY="463.0" mnemonicParsing="false" onAction="#outputProfileRelative" prefHeight="25.0" prefWidth="79.0" text="Вывести" />
    </children>
 </AnchorPane>
