@@ -16,6 +16,7 @@ import ru.manikinos.profile.datainit.SelectionMode;
 import ru.manikinos.profile.entity.*;
 import ru.manikinos.profile.datainit.InitData;
 import ru.manikinos.profile.entity.query.NearestPerson;
+import ru.manikinos.profile.entity.query.SearchPerson;
 import ru.manikinos.profile.util.SceneMoves;
 
 import java.io.IOException;
@@ -26,6 +27,20 @@ import java.util.List;
 
 public class MainController {
 
+    @FXML
+    private TextField nameSearchTextField;
+    @FXML
+    private TextField patronymicSearchTextField;
+    @FXML
+    private TextField surnameSearchTextField;
+    @FXML
+    private TextField phoneNumberSearchTextField;
+    @FXML
+    private TextField documentSearchTextField;
+    @FXML
+    private Button searchButton;
+    @FXML
+    private Label searchPersonLabel;
     @FXML
     private Button processingOfPDButton;
     @FXML
@@ -673,5 +688,11 @@ public class MainController {
     @FXML
     private void getProcessingOfPD(ActionEvent event) {
         SceneMoves.openNewScene("processingPD-view.fxml", processingOfPDButton, "Согласие на обработку персональных данных");
+    }
+
+    @FXML
+    private void searchPerson(ActionEvent event) {
+        SearchPerson person = queryDAO.searchPerson(nameSearchTextField.getText(), patronymicSearchTextField.getText(), surnameSearchTextField.getText(), phoneNumberSearchTextField.getText(), documentSearchTextField.getText());
+        searchPersonLabel.setText(person.getId() + " " + person.getName() + " " + person.getPatronymic() + " " + person.getSurname());
     }
 }

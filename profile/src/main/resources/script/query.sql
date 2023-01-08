@@ -67,7 +67,7 @@ FROM Personal_data pd
 WHERE pd.id = 1;
 
 --10
-SELECT pd.name, pd.patronymic, pd.surname
+SELECT pd.id, pd.name, pd.patronymic, pd.surname
 FROM Personal_data pd
          INNER JOIN Document d ON d.id_personal_data = pd.id
          INNER JOIN Type t ON d.id_type = t.id

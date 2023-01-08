@@ -387,4 +387,37 @@ public class QueryDAO {
         return processing;
     }
 
+    public SearchPerson searchPerson(String name, String patronymic, String surname, String phoneNumber, String document) {
+        SearchPerson person = null;
+        final String GET_SEARCH_PERSON_QUERY = "SELECT pd.id, pd.name, pd.patronymic, pd.surname\n" +
+                "FROM Personal_data pd\n" +
+                "         INNER JOIN Document d ON d.id_personal_data = pd.id\n" +
+                "         INNER JOIN Type t ON d.id_type = t.id\n" +
+                "WHERE pd.phone_number = ? AND\n" +
+                "        pd.name = ? AND\n" +
+                "        pd.patronymic = ? AND\n" +
+                "        pd.surname = ? AND\n" +
+                "        t.name = ?;";
+
+        try(PreparedStatement preparedStatement = connection.prepareStatement(GET_SEARCH_PERSON_QUERY)) {
+            preparedStatement.setString(1, phoneNumber);
+            preparedStatement.setString(2, name);
+            preparedStatement.setString(3, patronymic);
+            preparedStatement.setString(4, surname);
+            preparedStatement.setString(5, document);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()) {
+                int id = resultSet.getInt(1);
+                String newName = resultSet.getString(2);
+                String newPatronymic = resultSet.getString(3);
+                String newSurname = resultSet.getString(4);
+
+                person = new SearchPerson(id, newName,newPatronymic, newSurname);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return person;
+    }
 }

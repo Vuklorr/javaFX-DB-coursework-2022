@@ -48,6 +48,19 @@
                         <Button fx:id="profileButton" layoutX="227.0" layoutY="187.0" mnemonicParsing="false" onAction="#getProfile" text="Вывести" />
                         <Text layoutX="425.0" layoutY="212.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Вывести согласие на обработку персональных данных:" />
                         <Button fx:id="processingOfPDButton" layoutX="738.0" layoutY="195.0" mnemonicParsing="false" onAction="#getProcessingOfPD" text="Вывести" />
+                        <Text layoutX="385.0" layoutY="233.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Найти человека по параметрам:" />
+                        <TextField fx:id="nameSearchTextField" layoutX="66.0" layoutY="252.0" prefHeight="24.0" prefWidth="211.0" promptText="Введите имя" />
+                        <Text layoutX="14.0" layoutY="269.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Имя" />
+                        <TextField fx:id="patronymicSearchTextField" layoutX="64.0" layoutY="291.0" prefHeight="26.0" prefWidth="213.0" promptText="Введите отчество" />
+                        <Text layoutY="309.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Отчество" />
+                        <TextField fx:id="surnameSearchTextField" layoutX="404.0" layoutY="252.0" prefHeight="26.0" prefWidth="199.0" promptText="Введите фамилию" />
+                        <Text layoutX="302.0" layoutY="269.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Фамилия" />
+                        <TextField fx:id="phoneNumberSearchTextField" layoutX="404.0" layoutY="291.0" prefHeight="26.0" prefWidth="201.0" promptText="Введите номер телефона" />
+                        <Text layoutX="302.0" layoutY="308.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Номер телефона" />
+                        <TextField fx:id="documentSearchTextField" layoutX="693.0" layoutY="253.0" prefHeight="25.0" prefWidth="177.0" promptText="Введите название документа" />
+                        <Text layoutX="623.0" layoutY="269.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Документ" />
+                        <Button fx:id="searchButton" layoutX="776.0" layoutY="291.0" mnemonicParsing="false" onAction="#searchPerson" prefHeight="25.0" prefWidth="93.0" text="Найти" />
+                        <Label fx:id="searchPersonButton" layoutX="3.0" layoutY="323.0" text="Label" />
                      </children>
                   </AnchorPane>
                </children>
