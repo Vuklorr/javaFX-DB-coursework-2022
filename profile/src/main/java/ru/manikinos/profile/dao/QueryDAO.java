@@ -328,7 +328,7 @@ public class QueryDAO {
                 "         INNER JOIN PERSONAL_DATA pd2 ON pd2.id = fr.id_second_person\n" +
                 "         INNER JOIN Address a on a.id = pd2.id_address\n" +
                 "         INNER JOIN Type_of_relationship Tor on Tor.id = fr.id_type_of_relationship\n" +
-                "WHERE pd1.id = ?;";
+                "WHERE pd2.id = ?;";
 
         try(PreparedStatement preparedStatement = connection.prepareStatement(GET_PROFILE_RELATIVE_QUERY)) {
             preparedStatement.setInt(1, Integer.parseInt(id));

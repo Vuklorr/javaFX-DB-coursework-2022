@@ -57,7 +57,7 @@ FROM FAMILY_RELATIONS fr
          INNER JOIN PERSONAL_DATA pd1 ON pd1.id = fr.id_first_person
          INNER JOIN PERSONAL_DATA pd2 ON pd2.id = fr.id_second_person
          INNER JOIN Address a on a.id = pd2.id_address
-WHERE pd1.id = 1;
+WHERE pd2.id = 1;
 
 --9
 SELECT pd.name, pd.patronymic, pd.surname,
