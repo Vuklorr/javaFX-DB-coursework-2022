@@ -30,7 +30,7 @@ CREATE TABLE Type_Of_Operation (
     name VARCHAR(255)
 );
 
-CREATE TABLE History_Of_Operations (
+CREATE TABLE History_Of_Operation (
     id INT PRIMARY KEY,
     id_type_of_operation INT,
     id_client INT,
