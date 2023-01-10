@@ -56,13 +56,23 @@ public class MainController {
     private Button typeOfOperationTableButton;
 
     @FXML
-    void showClientTable(ActionEvent event) {
+    void showClientTable() {
         MovingScenes.showNewScene("client-view.fxml", "Пользователь");
     }
 
     @FXML
-    void showFileTable(ActionEvent event) {
+    void showFileTable() {
         MovingScenes.showNewScene("file-view.fxml", "Файл");
+    }
+
+    @FXML
+    void showTagTable() {
+        MovingScenes.showNewScene("tag-view.fxml", "Тег");
+    }
+
+    @FXML
+    void showFileTagTable(ActionEvent event) {
+
     }
 
     @FXML
@@ -91,11 +101,6 @@ public class MainController {
     }
 
     @FXML
-    void showFileTagTable(ActionEvent event) {
-
-    }
-
-    @FXML
     void showFrequentFileOperationsQuery(ActionEvent event) {
 
     }
@@ -112,11 +117,6 @@ public class MainController {
 
     @FXML
     void showPrivilegeTable(ActionEvent event) {
-
-    }
-
-    @FXML
-    void showTagTable(ActionEvent event) {
 
     }
 
