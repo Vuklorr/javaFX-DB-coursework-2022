@@ -1,5 +1,6 @@
 package com.vuklorr.fileshared;
 
+import com.vuklorr.fileshared.util.MovingScenes;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -56,7 +57,7 @@ public class MainController {
 
     @FXML
     void showClientTable(ActionEvent event) {
-
+        MovingScenes.showNewScene("client-view.fxml", "Пользователь");
     }
 
     @FXML
