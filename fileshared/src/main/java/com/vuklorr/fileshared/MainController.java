@@ -71,6 +71,11 @@ public class MainController {
     }
 
     @FXML
+    void showTypeOfOperationTable() {
+        MovingScenes.showNewScene("type-of-operation-view.fxml", "Тип операции");
+    }
+
+    @FXML
     void showFileTagTable(ActionEvent event) {
 
     }
@@ -127,11 +132,6 @@ public class MainController {
 
     @FXML
     void showTopThreeMostAccessibleFilesQuery(ActionEvent event) {
-
-    }
-
-    @FXML
-    void showTypeOfOperationTable(ActionEvent event) {
 
     }
 }
