@@ -61,6 +61,11 @@ public class MainController {
     }
 
     @FXML
+    void showFileTable(ActionEvent event) {
+        MovingScenes.showNewScene("file-view.fxml", "Файл");
+    }
+
+    @FXML
     void searchSimilarFilesQuery(ActionEvent event) {
 
     }
@@ -82,11 +87,6 @@ public class MainController {
 
     @FXML
     void showFileOperationsWithClientQuery(ActionEvent event) {
-
-    }
-
-    @FXML
-    void showFileTable(ActionEvent event) {
 
     }
 

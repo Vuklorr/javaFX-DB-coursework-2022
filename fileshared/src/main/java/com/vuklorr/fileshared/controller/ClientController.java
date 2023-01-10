@@ -39,7 +39,7 @@ public class ClientController {
     @FXML
     private TextField surnameTextField;
 
-    private final ClientDAO clientData = new ClientDAO();
+    private final ClientDAO clientDAO = new ClientDAO();
 
     public ClientController() throws SQLException, ClassNotFoundException {
     }
@@ -61,7 +61,7 @@ public class ClientController {
 
     @FXML
     private void add() {
-        clientData.addData(idTextField.getText(),
+        clientDAO.addData(idTextField.getText(),
                 nameTextField.getText(),
                 patronymicTextField.getText(),
                 surnameTextField.getText());
@@ -71,7 +71,7 @@ public class ClientController {
 
     @FXML
     private void update() {
-        clientData.updateData(idTextField.getText(),
+        clientDAO.updateData(idTextField.getText(),
                 nameTextField.getText(),
                 patronymicTextField.getText(),
                 surnameTextField.getText());
@@ -80,7 +80,7 @@ public class ClientController {
 
     @FXML
     private void delete() {
-        clientData.deleteData(idTextField.getText());
+        clientDAO.deleteData(idTextField.getText());
         outputDataToTable();
     }
 
@@ -90,6 +90,6 @@ public class ClientController {
         patronymicClientColumn.setCellValueFactory(new PropertyValueFactory<>("patronymic"));
         surnameClientColumn.setCellValueFactory(new PropertyValueFactory<>("surname"));
 
-        clientTableView.setItems(clientData.getData());
+        clientTableView.setItems(clientDAO.getData());
     }
 }
