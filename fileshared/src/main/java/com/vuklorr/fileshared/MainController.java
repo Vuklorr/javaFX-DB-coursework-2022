@@ -81,6 +81,11 @@ public class MainController {
     }
 
     @FXML
+    private void showPrivilegeTable() {
+        MovingScenes.showNewScene("privilege-view.fxml", "Право");
+    }
+
+    @FXML
     void showFileTagTable(ActionEvent event) {
 
     }
@@ -117,11 +122,6 @@ public class MainController {
 
     @FXML
     void showPrivilegeOfOperationTable(ActionEvent event) {
-
-    }
-
-    @FXML
-    void showPrivilegeTable(ActionEvent event) {
 
     }
 

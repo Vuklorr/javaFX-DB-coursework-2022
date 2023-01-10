@@ -75,11 +75,11 @@ public class FileDAO {
     }
 
     public void deleteData(String id) {
-        final String DELETE_TAG_QUERY = """
+        final String DELETE_FILE_QUERY = """
                 DELETE
                 FROM PUBLIC.FILE
                 WHERE ID = ?;""";
-        try(PreparedStatement preparedStatement = connection.prepareStatement(DELETE_TAG_QUERY)) {
+        try(PreparedStatement preparedStatement = connection.prepareStatement(DELETE_FILE_QUERY)) {
             preparedStatement.setInt(1, Integer.parseInt(id));
 
             preparedStatement.executeUpdate();

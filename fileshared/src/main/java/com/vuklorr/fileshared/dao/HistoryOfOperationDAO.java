@@ -77,11 +77,11 @@ public class HistoryOfOperationDAO {
     }
 
     public void deleteData(String id) {
-        final String DELETE_CLIENT_QUERY = """
+        final String DELETE_HOO_QUERY = """
                 DELETE
                 FROM PUBLIC.HISTORY_OF_OPERATION
                 WHERE ID = ?;""";
-        try(PreparedStatement preparedStatement = connection.prepareStatement(DELETE_CLIENT_QUERY)) {
+        try(PreparedStatement preparedStatement = connection.prepareStatement(DELETE_HOO_QUERY)) {
             preparedStatement.setInt(1, Integer.parseInt(id));
 
             preparedStatement.executeUpdate();

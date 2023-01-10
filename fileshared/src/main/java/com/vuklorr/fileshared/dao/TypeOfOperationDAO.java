@@ -68,11 +68,11 @@ public class TypeOfOperationDAO {
     }
 
     public void deleteData(String id) {
-        final String DELETE_TAG_QUERY = """
+        final String DELETE_TOO_QUERY = """
                 DELETE
                 FROM PUBLIC.TYPE_OF_OPERATION
                 WHERE ID = ?;""";
-        try(PreparedStatement preparedStatement = connection.prepareStatement(DELETE_TAG_QUERY)) {
+        try(PreparedStatement preparedStatement = connection.prepareStatement(DELETE_TOO_QUERY)) {
             preparedStatement.setInt(1, Integer.parseInt(id));
 
             preparedStatement.executeUpdate();
