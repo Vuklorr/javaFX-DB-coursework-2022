@@ -86,6 +86,11 @@ public class MainController {
     }
 
     @FXML
+    void showPrivilegeOfOperationTable() {
+        MovingScenes.showNewScene("privilege-of-operation-view.fxml", "Право на операцию");
+    }
+
+    @FXML
     void showFileTagTable(ActionEvent event) {
 
     }
@@ -120,10 +125,6 @@ public class MainController {
 
     }
 
-    @FXML
-    void showPrivilegeOfOperationTable(ActionEvent event) {
-
-    }
 
     @FXML
     void showTagsWithRatingQuery(ActionEvent event) {
