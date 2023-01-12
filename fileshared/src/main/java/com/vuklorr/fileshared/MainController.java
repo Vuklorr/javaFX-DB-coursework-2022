@@ -106,13 +106,13 @@ public class MainController {
     }
 
     @FXML
-    void showDownloadedFilesExcludingLastThreeQuery(ActionEvent event) {
+    private void showDownloadedFilesExcludingLastThreeQuery() {
         MovingScenes.showNewScene("downloaded-files-excluding-last-three-view.fxml", "Список скаченных файлов без учета последних 3");
     }
 
     @FXML
-    void showTopThreeMostAccessibleFilesQuery(ActionEvent event) {
-
+    private void showTopThreeMostAccessibleFilesQuery() {
+        MovingScenes.showNewScene("top-three-most-accessible-files-view.fxml", "ТОП - 3 самых доступных файлов с указанием количества пользователей по каждому виду доступности");
     }
 
     @FXML
