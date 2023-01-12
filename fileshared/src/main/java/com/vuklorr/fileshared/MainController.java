@@ -86,23 +86,23 @@ public class MainController {
     }
 
     @FXML
-    void showPrivilegeOfOperationTable() {
+    private void showPrivilegeOfOperationTable() {
         MovingScenes.showNewScene("privilege-of-operation-view.fxml", "Право на операцию");
     }
 
     @FXML
-    void showFileTagTable() {
+    private void showFileTagTable() {
         MovingScenes.showNewScene("file-tag-view.fxml", "Тег файла");
     }
 
     @FXML
-    void showDownloadedFilesByTheClientQueryButton() {
+    private void showDownloadedFilesByTheClientQueryButton() {
         MovingScenes.showNewScene("downloaded-files-by-the-client-view.fxml", "Список файлов, которые может скачать пользователь");
     }
 
     @FXML
-    void showFileOperationsWithClientQuery(ActionEvent event) {
-
+    private void showFileOperationsWithClientQuery() {
+        MovingScenes.showNewScene("file-operations-with-client-view.fxml", "Список операций над файлом с указанием пользователя");
     }
 
     @FXML
