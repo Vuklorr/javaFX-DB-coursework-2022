@@ -107,7 +107,7 @@ public class MainController {
 
     @FXML
     void showDownloadedFilesExcludingLastThreeQuery(ActionEvent event) {
-
+        MovingScenes.showNewScene("downloaded-files-excluding-last-three-view.fxml", "Список скаченных файлов без учета последних 3");
     }
 
     @FXML
