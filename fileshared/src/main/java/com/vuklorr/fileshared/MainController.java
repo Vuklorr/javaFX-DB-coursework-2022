@@ -96,17 +96,12 @@ public class MainController {
     }
 
     @FXML
-    void searchSimilarFilesQuery(ActionEvent event) {
-
+    void showDownloadedFilesByTheClientQueryButton() {
+        MovingScenes.showNewScene("downloaded-files-by-the-client-view.fxml", "Список файлов, которые может скачать пользователь");
     }
 
     @FXML
-    void showCountOfDownloadedFilesWithClientInfoQuery(ActionEvent event) {
-
-    }
-
-    @FXML
-    void showDownloadedFilesByTheClientQueryButton(ActionEvent event) {
+    void showFileOperationsWithClientQuery(ActionEvent event) {
 
     }
 
@@ -116,7 +111,7 @@ public class MainController {
     }
 
     @FXML
-    void showFileOperationsWithClientQuery(ActionEvent event) {
+    void showTopThreeMostAccessibleFilesQuery(ActionEvent event) {
 
     }
 
@@ -125,14 +120,18 @@ public class MainController {
 
     }
 
-
     @FXML
-    void showTagsWithRatingQuery(ActionEvent event) {
+    void showCountOfDownloadedFilesWithClientInfoQuery(ActionEvent event) {
 
     }
 
     @FXML
-    void showTopThreeMostAccessibleFilesQuery(ActionEvent event) {
+    void searchSimilarFilesQuery(ActionEvent event) {
+
+    }
+
+    @FXML
+    void showTagsWithRatingQuery(ActionEvent event) {
 
     }
 }
