@@ -59,16 +59,7 @@ public class PrivilegeOfOperationDAO {
                   AND t.ID_TYPE_OF_OPERATION = ?;
                 """;
 
-        try(PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_POO_QUERY)) {
-            preparedStatement.setInt(1, Integer.parseInt(idPrivilege));
-            preparedStatement.setInt(2, Integer.parseInt(idTypeOfOperation));
-            preparedStatement.setInt(3, idPrivilegeTypeOfOperationOld.get(0));
-            preparedStatement.setInt(4, idPrivilegeTypeOfOperationOld.get(1));
-
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        FileTagDAO.executeQuery(idPrivilege, idTypeOfOperation, idPrivilegeTypeOfOperationOld, UPDATE_POO_QUERY, connection);
     }
 
     public void deleteData(String idPrivilege, String idTypeOfOperation) {

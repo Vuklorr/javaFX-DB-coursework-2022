@@ -91,8 +91,8 @@ public class MainController {
     }
 
     @FXML
-    void showFileTagTable(ActionEvent event) {
-
+    void showFileTagTable() {
+        MovingScenes.showNewScene("file-tag-view.fxml", "Тег файла");
     }
 
     @FXML
