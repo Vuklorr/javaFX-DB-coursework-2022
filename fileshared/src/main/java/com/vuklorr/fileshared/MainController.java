@@ -116,8 +116,8 @@ public class MainController {
     }
 
     @FXML
-    void showFrequentFileOperationsQuery(ActionEvent event) {
-
+    private void showFrequentFileOperationsQuery() {
+        MovingScenes.showNewScene("frequent-file-operations-view.fxml", "Список самых частых операций над файлами, учитываются только 2 последние операции создания файла");
     }
 
     @FXML
