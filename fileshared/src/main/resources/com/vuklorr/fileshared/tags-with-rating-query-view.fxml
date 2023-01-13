@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="440.0" prefWidth="716.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.vuklorr.fileshared.controller.query.TagsWithRatingController">
+    <TableView fx:id="tagsWithRatingTableView" layoutX="27.0" layoutY="32.0" prefHeight="372.0" prefWidth="659.0">
+      <columns>
+          <TableColumn fx:id="idFileColumn" prefWidth="75.0" text="ID файла" />
+          <TableColumn fx:id="countTagColumn" prefWidth="75.0" text="Количество тегов" />
+          <TableColumn fx:id="ratingColumn" prefWidth="75.0" text="Рейтинг" />
+      </columns>
+        <columnResizePolicy>
+          <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+        </columnResizePolicy>
+    </TableView>
+</AnchorPane>

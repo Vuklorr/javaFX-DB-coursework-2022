@@ -131,7 +131,7 @@ public class MainController {
     }
 
     @FXML
-    void showTagsWithRatingQuery(ActionEvent event) {
-
+    private void showTagsWithRatingQuery() {
+        MovingScenes.showNewScene("tags-with-rating-query-view.fxml", "Список тегов с указанием рейтинга");
     }
 }
