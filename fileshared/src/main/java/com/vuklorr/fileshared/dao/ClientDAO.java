@@ -2,6 +2,7 @@ package com.vuklorr.fileshared.dao;
 
 import com.vuklorr.fileshared.entity.Client;
 import com.vuklorr.fileshared.util.Connections;
+import com.vuklorr.fileshared.util.DuplicateQuery;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -21,21 +22,7 @@ public class ClientDAO {
         final String CLIENT_DATA_QUERY = "SELECT *\n" +
                 "FROM CLIENT;";
 
-        try(PreparedStatement preparedStatement = connection.prepareStatement(CLIENT_DATA_QUERY)) {
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            while (resultSet.next()) {
-                int id = resultSet.getInt(1);
-                String name = resultSet.getString(2);
-                String patronymic = resultSet.getString(3);
-                String surname = resultSet.getString(4);
-
-                clients.add(new Client(id, name, patronymic, surname));
-            }
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        DuplicateQuery.getClients(clients, CLIENT_DATA_QUERY, connection);
         return clients;
     }
 

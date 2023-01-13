@@ -121,8 +121,8 @@ public class MainController {
     }
 
     @FXML
-    void showCountOfDownloadedFilesWithClientInfoQuery(ActionEvent event) {
-
+    private void showCountOfDownloadedFilesWithClientInfoQuery() {
+        MovingScenes.showNewScene("count-of-downloaded-files-with-client-info-view.fxml", "Количество скачиваний файлов с информацей по каждому пользователю");
     }
 
     @FXML
