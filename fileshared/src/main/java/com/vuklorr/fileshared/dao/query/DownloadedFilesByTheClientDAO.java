@@ -2,12 +2,12 @@ package com.vuklorr.fileshared.dao.query;
 
 import com.vuklorr.fileshared.entity.File;
 import com.vuklorr.fileshared.util.Connections;
+import com.vuklorr.fileshared.util.DuplicateQuery;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class DownloadedFilesByTheClientDAO {
@@ -28,18 +28,9 @@ public class DownloadedFilesByTheClientDAO {
 
         try(PreparedStatement preparedStatement = connection.prepareStatement(DOWNLOADED_FILES_DATA_QUERY)) {
             preparedStatement.setInt(1, Integer.parseInt(idClient));
+            preparedStatement.executeQuery();
 
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            while(resultSet.next()) {
-                int id = resultSet.getInt(1);
-                String name = resultSet.getString(2);
-                String path = resultSet.getString(3);
-                int size = resultSet.getInt(4);
-
-                files.add(new File(id, name, path, size));
-            }
-
+            DuplicateQuery.getFiles(files, preparedStatement);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

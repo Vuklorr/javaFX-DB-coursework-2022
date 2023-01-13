@@ -2,12 +2,12 @@ package com.vuklorr.fileshared.dao;
 
 import com.vuklorr.fileshared.entity.File;
 import com.vuklorr.fileshared.util.Connections;
+import com.vuklorr.fileshared.util.DuplicateQuery;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class FileDAO {
@@ -20,18 +20,9 @@ public class FileDAO {
         ObservableList<File> files = FXCollections.observableArrayList();
         final String FILE_DATA_QUERY = "SELECT *\n" +
                 "FROM FILE;";
-
         try(PreparedStatement preparedStatement = connection.prepareStatement(FILE_DATA_QUERY)) {
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            while (resultSet.next()) {
-                int id = resultSet.getInt(1);
-                String name = resultSet.getString(2);
-                String path = resultSet.getString(3);
-                int size = resultSet.getInt(4);
-
-                files.add(new File(id, name, path, size));
-            }
+            preparedStatement.executeQuery();
+            DuplicateQuery.getFiles(files, preparedStatement);
 
         } catch (SQLException e) {
             throw new RuntimeException(e);

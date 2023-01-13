@@ -1,6 +1,7 @@
 package com.vuklorr.fileshared.util;
 
 import com.vuklorr.fileshared.entity.Client;
+import com.vuklorr.fileshared.entity.File;
 import javafx.collections.ObservableList;
 
 import java.sql.Connection;
@@ -26,6 +27,23 @@ public class DuplicateQuery {
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    public static void getFiles(ObservableList<File> files,
+                                PreparedStatement preparedStatement) throws SQLException {
+        {
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                int id = resultSet.getInt(1);
+                String name = resultSet.getString(2);
+                String path = resultSet.getString(3);
+                int size = resultSet.getInt(4);
+
+                files.add(new File(id, name, path, size));
+            }
+
         }
     }
 }

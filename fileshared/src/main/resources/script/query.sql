@@ -53,7 +53,7 @@ WHERE TOO.NAME = 'Скачать';
 --7
 SELECT *
 FROM FILE F
-WHERE NAME LIKE '%.img';
+WHERE NAME LIKE '%m%';
 
 SELECT *
 FROM FILE F
@@ -61,13 +61,13 @@ WHERE PATH = 'home/Desktop';
 
 SELECT *
 FROM FILE F
-WHERE SIZE = 5;
+WHERE SIZE LIKE '%1%';
 
 SELECT *
 FROM FILE F
-WHERE NAME LIKE '%.img' AND
-      PATH = 'home/Telegram' AND
-      SIZE = 82;
+WHERE NAME LIKE '%i%' AND
+      PATH LIKE '%home%' AND
+      SIZE  LIKE '%3%';
 
 --8
 SELECT ID_FILE, COUNT(ID_TAG), ROUND(1.0/COUNT(ID_TAG), 2) AS rating

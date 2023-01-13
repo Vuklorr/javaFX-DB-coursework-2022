@@ -108,7 +108,7 @@
                   text="Количество скачиваний файлов с информацей по каждому пользователю"
                   wrappingWidth="277.796875" GridPane.rowIndex="5"/>
             <Text strokeType="OUTSIDE" strokeWidth="0.0"
-                  text="Поиск похожих файлов с указанием степени похожести" wrappingWidth="278.81298828125"
+                  text="Поиск похожих файлов" wrappingWidth="278.81298828125"
                   GridPane.rowIndex="6"/>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" GridPane.rowIndex="7"/>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Список тегов с указанием рейтинга"

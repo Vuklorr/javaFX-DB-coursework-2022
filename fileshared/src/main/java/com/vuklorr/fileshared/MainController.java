@@ -1,60 +1,9 @@
 package com.vuklorr.fileshared;
 
 import com.vuklorr.fileshared.util.MovingScenes;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 
 public class MainController {
-
-    @FXML
-    private Button clientTableButton;
-
-    @FXML
-    private Button countOfDownloadedFilesWithClientInfoQueryButton;
-
-    @FXML
-    private Button downloadedFilesByTheClientQueryButton;
-
-    @FXML
-    private Button downloadedFilesExcludingLastThreeQueryButton;
-
-    @FXML
-    private Button fileOperationsWithClientQueryButton;
-
-    @FXML
-    private Button fileTableButton;
-
-    @FXML
-    private Button fileTagTableButton;
-
-    @FXML
-    private Button frequentFileOperationsQueryButton;
-
-    @FXML
-    private Button historyOfOperationTableButton;
-
-    @FXML
-    private Button privilegeOfOperationTableButton;
-
-    @FXML
-    private Button privilegeTableButton;
-
-    @FXML
-    private Button similarFilesQueryButton;
-
-    @FXML
-    private Button tagTableButton;
-
-    @FXML
-    private Button tagsWithRatingQueryButton;
-
-    @FXML
-    private Button topThreeMostAccessibleFilesQueryButton;
-
-    @FXML
-    private Button typeOfOperationTableButton;
-
     @FXML
     private void showClientTable() {
         MovingScenes.showNewScene("client-view.fxml", "Пользователь");
@@ -126,8 +75,8 @@ public class MainController {
     }
 
     @FXML
-    void searchSimilarFilesQuery(ActionEvent event) {
-
+    private void searchSimilarFilesQuery() {
+        MovingScenes.showNewScene("similar-file-view.fxml", "Поиск похожих файлов");
     }
 
     @FXML
